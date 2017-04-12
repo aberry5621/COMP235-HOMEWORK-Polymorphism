@@ -31,7 +31,7 @@ void quitSimulation();
 vector<vector<WorldBlock *>> createWorld(int size);
 void printWorldMatrix(vector<vector<WorldBlock *>>);
 CreatureCount countBugs(vector<vector<WorldBlock *>>);
-void doodlebug_actions(vector<vector<WorldBlock *>> p_matrix);
+
 int get_rand(int p_lb, int p_ub);
 
 /****************
@@ -50,25 +50,34 @@ int main() {
     vector<vector<WorldBlock *>> world_matrix = createWorld(WORLD_SIZE);
     // populate initial bugs
     
+    // Vector of Ants
+    vector<Ant *> vAnts(0);
     // 5 ants
     int antsSpawned = 0;
     while (antsSpawned < QTY_ANTS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if (!(world_matrix[r_x][r_y]->isOccupied)) {
-            world_matrix[r_x][r_y]->occupantPtr = new Ant(r_x, r_y);
+        if ( ! (world_matrix[r_x][r_y]->isOccupied)) {
+            Ant * tmpAntPtr;
+            tmpAntPtr = new Ant(r_x, r_y);
+            vAnts.push_back(tmpAntPtr);
+            world_matrix[r_x][r_y]->occupantPtr = tmpAntPtr;
             world_matrix[r_x][r_y]->isOccupied = true;
             antsSpawned++;
         }
     }
-
+    // Vector of Doodlebugs
+    vector<Doodlebug *> vDoodlebugs(0);
     // 100 doodlebugs
     int dbugsSpawned = 0;
     while (dbugsSpawned < QTY_DOODLEBUGS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if (!(world_matrix[r_x][r_y]->isOccupied)) {
-            world_matrix[r_x][r_y]->occupantPtr = new Doodlebug(r_x, r_y);
+        if ( ! (world_matrix[r_x][r_y]->isOccupied)) {
+            Doodlebug * tmpDbugPtr;
+            tmpDbugPtr = new Doodlebug(r_x, r_y);
+            vDoodlebugs.push_back(tmpDbugPtr);
+            world_matrix[r_x][r_y]->occupantPtr = tmpDbugPtr;
             world_matrix[r_x][r_y]->isOccupied = true;
             dbugsSpawned++;
         }
@@ -84,18 +93,21 @@ int main() {
     // step forward when user presses enter key
     bool stepforth = false;
 
-    while (stepforth == false) {
+    do {
         // operate on bugs
         
-        // doodlebug actions
-        doodlebug_actions(world_matrix);
-        
+
+    
         // ant actions
-        
-        
-        
+    
         // show the world
         printWorldMatrix(world_matrix);
+        
+        // doodlebug actions
+        for (int i = 0; i < vDoodlebugs.size(); i++) {
+            vDoodlebugs[i]->setSymbol('d');
+        }
+        
         // user choice
         cout << "enter n to step forward, q to quit" << endl;
         char usr_input = ' ';
@@ -105,7 +117,8 @@ int main() {
         } else if (usr_input == 'q') {
             quitSimulation();
         }
-    }
+    } while (stepforth == false);
+        
     return 0;
 }
 
@@ -137,22 +150,6 @@ vector<vector<WorldBlock *>> createWorld(int size) {
     return tmpMatrix;
 }
 
-void doodlebug_actions(vector<vector<WorldBlock *>> p_matrix) {
-    for (int row = 0; row < p_matrix.size(); row++) {
-        for (int col = 0; col < p_matrix[row].size(); col++) {
-            if (p_matrix[row][col]->isOccupied) {
-                Doodlebug * dbugPtr;
-                * dbugPtr = * p_matrix[row][col]->occupantPtr;
-                char creature_symbol = p_matrix[row][col]->occupantPtr->getSymbol();
-                if (creature_symbol == 'D') {
-                    cout << "found a doodlebug\n";
-                    // do doodlebug stuff
-                    p_matrix[row][col]->occupantPtr->setSymbol('d');
-                }
-            }
-        }
-    }
-}
 
 void printWorldMatrix(vector<vector<WorldBlock *>> p_matrix) {
     cout << "Print Matrix World\n";
