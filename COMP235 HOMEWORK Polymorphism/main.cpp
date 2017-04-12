@@ -102,7 +102,7 @@ int main() {
 
         // move doodlebugs
         for (int i = 0; i < vDoodlebugs.size(); i++) {
-            vDoodlebugs[i]->move(vWorldMatrix, & vDoodlebugs);
+            vDoodlebugs[i]->move(vWorldMatrix, vector<Doodlebug> & vDoodlebugs);
         }
         
         // user choice
