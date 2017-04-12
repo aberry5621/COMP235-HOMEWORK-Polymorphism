@@ -6,7 +6,10 @@
 //  Copyright © 2017 alex. All rights reserved.
 //
 
+#include "World.hpp"
 #include "Organism.hpp"
+#include <vector>
+using std::vector;
 
 #ifndef Doodlebug_hpp
 #define Doodlebug_hpp
@@ -19,6 +22,7 @@ public:
     char getSymbol();
     void setSymbol(char p_sym);
     void setPosition(int p_pos_x, int p_pos_y);
+    void move(vector<vector<WorldBlock *>> p_matrix, vector<Doodlebug> p_vec);
 private:
     char character_symbol = 'D';
     int age = 0;

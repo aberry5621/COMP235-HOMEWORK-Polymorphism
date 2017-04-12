@@ -11,6 +11,7 @@
 		463F5FAF1E9D3A3B00060B02 /* Organism.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463F5FAD1E9D3A3B00060B02 /* Organism.cpp */; };
 		463F5FB21E9D3A4B00060B02 /* Ant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463F5FB01E9D3A4B00060B02 /* Ant.cpp */; };
 		463F5FB51E9D3A5800060B02 /* Doodlebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463F5FB31E9D3A5800060B02 /* Doodlebug.cpp */; };
+		E2AAFE9E1E9E8CA10080A487 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2AAFE9C1E9E8CA10080A487 /* World.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		463F5FB11E9D3A4B00060B02 /* Ant.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ant.hpp; sourceTree = "<group>"; };
 		463F5FB31E9D3A5800060B02 /* Doodlebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Doodlebug.cpp; sourceTree = "<group>"; };
 		463F5FB41E9D3A5800060B02 /* Doodlebug.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Doodlebug.hpp; sourceTree = "<group>"; };
+		E2AAFE9C1E9E8CA10080A487 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
+		E2AAFE9D1E9E8CA10080A487 /* World.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = World.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 				463F5FB11E9D3A4B00060B02 /* Ant.hpp */,
 				463F5FB31E9D3A5800060B02 /* Doodlebug.cpp */,
 				463F5FB41E9D3A5800060B02 /* Doodlebug.hpp */,
+				E2AAFE9C1E9E8CA10080A487 /* World.cpp */,
+				E2AAFE9D1E9E8CA10080A487 /* World.hpp */,
 			);
 			path = "COMP235 HOMEWORK Polymorphism";
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				463F5FB21E9D3A4B00060B02 /* Ant.cpp in Sources */,
+				E2AAFE9E1E9E8CA10080A487 /* World.cpp in Sources */,
 				463F5FA71E9D3A0800060B02 /* main.cpp in Sources */,
 				463F5FAF1E9D3A3B00060B02 /* Organism.cpp in Sources */,
 				463F5FB51E9D3A5800060B02 /* Doodlebug.cpp in Sources */,
@@ -264,6 +270,7 @@
 				463F5FAC1E9D3A0800060B02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

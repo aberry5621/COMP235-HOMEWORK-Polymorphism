@@ -6,6 +6,7 @@
 //  Copyright © 2017 alex. All rights reserved.
 //
 
+#include "World.hpp"
 #include "Organism.hpp"
 
 #ifndef Ant_hpp

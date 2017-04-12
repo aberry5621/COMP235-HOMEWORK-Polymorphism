@@ -6,6 +6,7 @@
 //  Copyright © 2017 alex. All rights reserved.
 //
 
+#include "World.hpp"
 #include "Ant.hpp"
 #include <iostream>
 

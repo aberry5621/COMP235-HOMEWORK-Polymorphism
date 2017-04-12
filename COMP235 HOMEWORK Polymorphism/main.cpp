@@ -8,19 +8,14 @@
 
 #include <iostream>
 #include <vector>
+#include "World.hpp"
 #include "Organism.hpp"
 #include "Ant.hpp"
 #include "Doodlebug.hpp"
 using std::vector;
 using std::cout;
 using std::endl;
-// main data structures
-struct WorldBlock {
-    int pos_x = 0;
-    int pos_y = 0;
-    bool isOccupied = false;
-    Organism * occupantPtr;
-};
+// for counting creatures
 struct CreatureCount {
     int num_ants = 0;
     int num_dbugs = 0;
@@ -47,7 +42,7 @@ int main() {
     const int QTY_ANTS = 5;
     const int QTY_DOODLEBUGS = 100;
     // make a 2d matrix world to fill with bugs
-    vector<vector<WorldBlock *>> world_matrix = createWorld(WORLD_SIZE);
+    vector<vector<WorldBlock *>> vWorldMatrix = createWorld(WORLD_SIZE);
     // populate initial bugs
     
     // Vector of Ants
@@ -57,12 +52,12 @@ int main() {
     while (antsSpawned < QTY_ANTS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if ( ! (world_matrix[r_x][r_y]->isOccupied)) {
+        if ( ! (vWorldMatrix[r_x][r_y]->isOccupied)) {
             Ant * tmpAntPtr;
             tmpAntPtr = new Ant(r_x, r_y);
             vAnts.push_back(tmpAntPtr);
-            world_matrix[r_x][r_y]->occupantPtr = tmpAntPtr;
-            world_matrix[r_x][r_y]->isOccupied = true;
+            vWorldMatrix[r_x][r_y]->occupantPtr = tmpAntPtr;
+            vWorldMatrix[r_x][r_y]->isOccupied = true;
             antsSpawned++;
         }
     }
@@ -73,25 +68,25 @@ int main() {
     while (dbugsSpawned < QTY_DOODLEBUGS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if ( ! (world_matrix[r_x][r_y]->isOccupied)) {
+        if ( ! (vWorldMatrix[r_x][r_y]->isOccupied)) {
             Doodlebug * tmpDbugPtr;
             tmpDbugPtr = new Doodlebug(r_x, r_y);
             vDoodlebugs.push_back(tmpDbugPtr);
-            world_matrix[r_x][r_y]->occupantPtr = tmpDbugPtr;
-            world_matrix[r_x][r_y]->isOccupied = true;
+            vWorldMatrix[r_x][r_y]->occupantPtr = tmpDbugPtr;
+            vWorldMatrix[r_x][r_y]->isOccupied = true;
             dbugsSpawned++;
         }
     }
     
     // count the bugs
     cout << "Critter Count:\n";
-    CreatureCount count = countBugs(world_matrix);
+    CreatureCount count = countBugs(vWorldMatrix);
     cout << "Ants:" << count.num_ants << "\n";
     cout << "Doodlebugs:" << count.num_dbugs << "\n";
     
     // simulate time
     // step forward when user presses enter key
-    bool stepforth = false;
+    bool stepforth = true;
 
     do {
         // operate on bugs
@@ -101,11 +96,13 @@ int main() {
         // ant actions
     
         // show the world
-        printWorldMatrix(world_matrix);
+        printWorldMatrix(vWorldMatrix);
         
         // doodlebug actions
+
+        // move doodlebugs
         for (int i = 0; i < vDoodlebugs.size(); i++) {
-            vDoodlebugs[i]->setSymbol('d');
+            vDoodlebugs[i]->move(vWorldMatrix, & vDoodlebugs);
         }
         
         // user choice
@@ -117,7 +114,7 @@ int main() {
         } else if (usr_input == 'q') {
             quitSimulation();
         }
-    } while (stepforth == false);
+    } while (stepforth);
         
     return 0;
 }
