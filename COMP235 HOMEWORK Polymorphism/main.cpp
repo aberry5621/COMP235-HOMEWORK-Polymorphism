@@ -31,9 +31,12 @@ void quitSimulation();
 vector<vector<WorldBlock *>> createWorld(int size);
 void printWorldMatrix(vector<vector<WorldBlock *>>);
 CreatureCount countBugs(vector<vector<WorldBlock *>>);
-void print_foo(vector<char>);
+void doodlebug_actions(vector<vector<WorldBlock *>> p_matrix);
 int get_rand(int p_lb, int p_ub);
-// main fucntion
+
+/****************
+* MAIN FUNCTION *
+****************/
 int main() {
     
     cout << "Ants and Doodlebugs World!!\n";
@@ -82,7 +85,14 @@ int main() {
     bool stepforth = false;
 
     while (stepforth == false) {
-        // populate bugs
+        // operate on bugs
+        
+        // doodlebug actions
+        doodlebug_actions(world_matrix);
+        
+        // ant actions
+        
+        
         
         // show the world
         printWorldMatrix(world_matrix);
@@ -98,6 +108,7 @@ int main() {
     }
     return 0;
 }
+
 /* 
  main function definitions
  */
@@ -126,6 +137,23 @@ vector<vector<WorldBlock *>> createWorld(int size) {
     return tmpMatrix;
 }
 
+void doodlebug_actions(vector<vector<WorldBlock *>> p_matrix) {
+    for (int row = 0; row < p_matrix.size(); row++) {
+        for (int col = 0; col < p_matrix[row].size(); col++) {
+            if (p_matrix[row][col]->isOccupied) {
+                Doodlebug * dbugPtr;
+                * dbugPtr = * p_matrix[row][col]->occupantPtr;
+                char creature_symbol = p_matrix[row][col]->occupantPtr->getSymbol();
+                if (creature_symbol == 'D') {
+                    cout << "found a doodlebug\n";
+                    // do doodlebug stuff
+                    p_matrix[row][col]->occupantPtr->setSymbol('d');
+                }
+            }
+        }
+    }
+}
+
 void printWorldMatrix(vector<vector<WorldBlock *>> p_matrix) {
     cout << "Print Matrix World\n";
     cout << "Matrix Size: " << p_matrix.size() << " x " <<  p_matrix[0].size() << "\n";
@@ -136,7 +164,6 @@ void printWorldMatrix(vector<vector<WorldBlock *>> p_matrix) {
             } else {
                 cout << "[ ]";
             }
-            
         }
         cout << "\n";
     }

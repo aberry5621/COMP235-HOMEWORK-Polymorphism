@@ -26,3 +26,7 @@ void Organism::setPosition(int p_pos_x, int p_pos_y) {
     m_pos_x = p_pos_x;
     m_pos_y = p_pos_y;
 }
+
+void Organism::move() {
+    // void
+}

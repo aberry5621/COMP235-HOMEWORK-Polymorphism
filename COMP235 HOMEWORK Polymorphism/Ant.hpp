@@ -19,6 +19,7 @@ public:
     char getSymbol();
     void setSymbol(char p_sym);
     void setPosition(int p_pos_x, int p_pos_y);
+    void move();
 private:
     char character_symbol = 'A';
     int age = 0;

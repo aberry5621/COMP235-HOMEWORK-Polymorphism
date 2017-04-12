@@ -22,6 +22,7 @@ public:
     void setSymbol(char p_sym);
     virtual void setPosition(int p_pos_x, int p_pos_y);
     // move
+    void move();
     // breed
     // eat
     // die
