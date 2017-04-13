@@ -83,6 +83,13 @@ int main() {
     CreatureCount count = countBugs(vWorldMatrix);
     cout << "Ants:" << count.num_ants << "\n";
     cout << "Doodlebugs:" << count.num_dbugs << "\n";
+
+// new world test
+    
+    World newWorld(20, 20);
+    
+    
+    
     
     // simulate time
     // step forward when user presses enter key
@@ -90,21 +97,14 @@ int main() {
 
     do {
         // operate on bugs
-        
-
-    
         // ant actions
-    
         // show the world
         printWorldMatrix(vWorldMatrix);
-        
         // doodlebug actions
-
         // move doodlebugs
         for (int i = 0; i < vDoodlebugs.size(); i++) {
-            vDoodlebugs[i]->move(vWorldMatrix, vector<Doodlebug> & vDoodlebugs);
+            // vDoodlebugs[i]->move(vWorldMatrix, vector<Doodlebug> & vDoodlebugs);
         }
-        
         // user choice
         cout << "enter n to step forward, q to quit" << endl;
         char usr_input = ' ';
