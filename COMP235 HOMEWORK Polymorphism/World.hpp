@@ -31,7 +31,7 @@ public:
     // add something to a cell
     
     // set cell pointer
-    void setCellPointer(int p_x, int p_y, Organism ptr, bool p_occupy);
+    void setCellPointer(int p_x, int p_y, Organism &ptr, bool p_occupy);
     
     // print out size of world
     void printWorldSize();

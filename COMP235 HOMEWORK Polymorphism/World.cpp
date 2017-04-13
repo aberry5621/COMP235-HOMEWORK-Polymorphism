@@ -43,7 +43,7 @@ bool World::cellIsOccupied(int p_x, int p_y) {
 }
 
 // set cell pointer
-void World::setCellPointer(int p_x, int p_y, Organism ptr, bool p_occupy) {
+void World::setCellPointer(int p_x, int p_y, Organism &ptr, bool p_occupy) {
     vWorldMatrix[p_x][p_y]->occupantPtr = &ptr;
     vWorldMatrix[p_x][p_y]->isOccupied = p_occupy;
 }
@@ -56,6 +56,7 @@ void World::printWorldSize() {
 
 void World::printWorldContents() {
     // print the grid
+    cout << "Printing the World * * * * * * * * *" << endl;
     for (int row = 0; row < vWorldMatrix.size(); row++) {
         for (int col = 0; col < vWorldMatrix[row].size(); col++) {
             if (vWorldMatrix[row][col]->isOccupied) {

@@ -69,6 +69,8 @@ int main() {
         }
     }
     
+    newWorld.printWorldContents();
+    
     /*
     // Vector of Doodlebugs
     vector<Doodlebug *> vDoodlebugs(0);
