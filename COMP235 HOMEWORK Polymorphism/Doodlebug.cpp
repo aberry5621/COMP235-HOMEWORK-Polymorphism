@@ -37,6 +37,13 @@ void Doodlebug::setPosition(int p_pos_x, int p_pos_y) {
     m_pos_y = p_pos_y;
 }
 
+void Doodlebug::increaseAge() {
+    this->age++;
+    if (age > 3) {
+        setSymbol('X');
+    }
+}
+
 void Doodlebug::move(vector<vector<WorldBlock *>> p_matrix, vector<Doodlebug> p_vec) {
     cout << "Holee chit Dbug Move Called!\n";
     

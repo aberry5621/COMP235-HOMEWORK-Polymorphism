@@ -78,7 +78,10 @@ int main() {
     bool stepforth = true;
 
     do {
-        
+        // age doodlebugs
+        for (int i = 0; i < vDoodlebugs.size(); i++) {
+            vDoodlebugs[i]->increaseAge();
+        }
         newWorld.printWorldSize();
         newWorld.countBugs();
         newWorld.printWorldContents();
