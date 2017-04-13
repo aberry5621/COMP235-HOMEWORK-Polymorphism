@@ -69,6 +69,25 @@ void World::printWorldContents() {
     }
 }
 
+void World::countBugs() {
+    CreatureCount current_count;
+    for (int row = 0; row < vWorldMatrix.size(); row++) {
+        for (int col = 0; col < vWorldMatrix[row].size(); col++) {
+            if (vWorldMatrix[row][col]->isOccupied) {
+                char creature_symbol = vWorldMatrix[row][col]->occupantPtr->getSymbol();
+                if (creature_symbol == 'A') {
+                    current_count.num_ants++;
+                } else if (creature_symbol == 'D') {
+                    current_count.num_dbugs++;
+                }
+            }
+        }
+    }
+
+    cout << "Ants:" << current_count.num_ants << "\n";
+    cout << "Doodlebugs:" << current_count.num_dbugs << "\n";
+}
+
 
 
 

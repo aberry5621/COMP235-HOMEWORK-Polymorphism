@@ -20,6 +20,12 @@ struct WorldBlock {
     Organism * occupantPtr;
 };
 
+// for counting creatures
+struct CreatureCount {
+    int num_ants = 0;
+    int num_dbugs = 0;
+};
+
 class World {
 public:
     World();
@@ -40,6 +46,7 @@ public:
     void printWorldContents();
     
     // other world tasks
+    void countBugs();
     
 private:
     vector<vector<WorldBlock *>> vWorldMatrix;

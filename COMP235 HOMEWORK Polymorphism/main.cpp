@@ -15,16 +15,10 @@
 using std::vector;
 using std::cout;
 using std::endl;
-// for counting creatures
-struct CreatureCount {
-    int num_ants = 0;
-    int num_dbugs = 0;
-};
+
 // main function declares
 void stepConfirmMessage();
 void quitSimulation();
-
-CreatureCount countBugs(vector<vector<WorldBlock *>>);
 
 int get_rand(int p_lb, int p_ub);
 
@@ -45,11 +39,6 @@ int main() {
     
     World newWorld(20, 20);
     
-    newWorld.printWorldSize();
-    
-    newWorld.printWorldContents();
-    
-   
     // populate initial bugs
     
     // Vector of Ants
@@ -67,10 +56,7 @@ int main() {
             antsSpawned++;
         }
     }
-    
-    newWorld.printWorldContents();
-    
-    
+
     // Vector of Doodlebugs
     vector<Doodlebug *> vDoodlebugs(0);
     // 100 doodlebugs
@@ -86,37 +72,17 @@ int main() {
             dbugsSpawned++;
         }
     }
-    
-    newWorld.printWorldContents();
-    
-    
-    /**/
-    // count the bugs
-    cout << "Critter Count:\n";
-    // CreatureCount count = countBugs(vWorldMatrix);
-    // cout << "Ants:" << count.num_ants << "\n";
-    // cout << "Doodlebugs:" << count.num_dbugs << "\n";
 
-
-    
-    
-    
-    
-    
     // simulate time
     // step forward when user presses enter key
     bool stepforth = true;
 
     do {
-        // operate on bugs
-        // ant actions
-        // show the world
-        // printWorldMatrix(vWorldMatrix);
-        // doodlebug actions
-        // move doodlebugs
-//        for (int i = 0; i < vDoodlebugs.size(); i++) {
-//            // vDoodlebugs[i]->move(vWorldMatrix, vector<Doodlebug> & vDoodlebugs);
-//        }
+        
+        newWorld.printWorldSize();
+        newWorld.countBugs();
+        newWorld.printWorldContents();
+        
         // user choice
         cout << "enter n to step forward, q to quit" << endl;
         char usr_input = ' ';
@@ -135,45 +101,12 @@ int main() {
  main function definitions
  */
 void stepConfirmMessage() {
-    cout << "Stepping forward in teim!" << endl;
+    cout << "Stepping forward in time!" << endl;
 }
 
 void quitSimulation() {
     cout << "Quitting, goodbye!" << endl;
     exit(1);
-}
-
-vector<vector<WorldBlock *>> createWorld(int size) {
-    vector<vector<WorldBlock *>> tmpMatrix(size);
-    for (int i = 0; i < size; i++) {
-        tmpMatrix[i] = vector<WorldBlock *>(size);
-    }
-    // fill each row / col with a new world block
-    for (int row = 0; row < tmpMatrix.size(); row++) {
-        for (int col = 0; col < tmpMatrix[row].size(); col++) {
-            tmpMatrix[row][col] = (new WorldBlock);
-            tmpMatrix[row][col]->pos_x = row;
-            tmpMatrix[row][col]->pos_y = col;
-        }
-    }
-    return tmpMatrix;
-}
-
-CreatureCount countBugs(vector<vector<WorldBlock *>> p_matrix) {
-    CreatureCount current_count;
-    for (int row = 0; row < p_matrix.size(); row++) {
-        for (int col = 0; col < p_matrix[row].size(); col++) {
-            if (p_matrix[row][col]->isOccupied) {
-                char creature_symbol = p_matrix[row][col]->occupantPtr->getSymbol();
-                if (creature_symbol == 'A') {
-                    current_count.num_ants++;
-                } else if (creature_symbol == 'D') {
-                    current_count.num_dbugs++;
-                }
-            }
-        }
-    }
-    return current_count;
 }
 
 int get_rand(int lb, int ub) {
