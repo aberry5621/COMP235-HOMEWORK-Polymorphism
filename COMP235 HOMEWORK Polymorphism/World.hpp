@@ -24,8 +24,14 @@ class World {
 public:
     World();
     World(int p_size_x, int p_size_y);
+    
     // check if cell is occupied
+    bool cellIsOccupied(int p_x, int p_y);
+    
     // add something to a cell
+    
+    // set cell pointer
+    void setCellPointer(int p_x, int p_y, Organism ptr, bool p_occupy);
     
     // print out size of world
     void printWorldSize();
@@ -34,6 +40,7 @@ public:
     void printWorldContents();
     
     // other world tasks
+    
 private:
     vector<vector<WorldBlock *>> vWorldMatrix;
     int m_size_x;

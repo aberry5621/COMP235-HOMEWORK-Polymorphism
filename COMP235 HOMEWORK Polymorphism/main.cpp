@@ -24,7 +24,6 @@ struct CreatureCount {
 void stepConfirmMessage();
 void quitSimulation();
 
-void printWorldMatrix(vector<vector<WorldBlock *>>);
 CreatureCount countBugs(vector<vector<WorldBlock *>>);
 
 int get_rand(int p_lb, int p_ub);
@@ -42,7 +41,15 @@ int main() {
     const int QTY_ANTS = 5;
     const int QTY_DOODLEBUGS = 100;
 
-    /*
+    // new world test
+    
+    World newWorld(20, 20);
+    
+    newWorld.printWorldSize();
+    
+    newWorld.printWorldContents();
+    
+   
     // populate initial bugs
     
     // Vector of Ants
@@ -52,15 +59,17 @@ int main() {
     while (antsSpawned < QTY_ANTS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if ( ! (vWorldMatrix[r_x][r_y]->isOccupied)) {
+        
+        if ( ! (newWorld.cellIsOccupied(r_x, r_y))) {
             Ant * tmpAntPtr;
             tmpAntPtr = new Ant(r_x, r_y);
             vAnts.push_back(tmpAntPtr);
-            vWorldMatrix[r_x][r_y]->occupantPtr = tmpAntPtr;
-            vWorldMatrix[r_x][r_y]->isOccupied = true;
+            newWorld.setCellPointer(r_x, r_y, *tmpAntPtr, true);
             antsSpawned++;
         }
     }
+    
+    /*
     // Vector of Doodlebugs
     vector<Doodlebug *> vDoodlebugs(0);
     // 100 doodlebugs
@@ -84,14 +93,7 @@ int main() {
     // cout << "Ants:" << count.num_ants << "\n";
     // cout << "Doodlebugs:" << count.num_dbugs << "\n";
 
-// new world test
-    
-    World newWorld(20, 20);
-    
-    newWorld.printWorldSize();
-    
-    newWorld.printWorldContents();
-    
+
     
     
     
@@ -151,22 +153,6 @@ vector<vector<WorldBlock *>> createWorld(int size) {
         }
     }
     return tmpMatrix;
-}
-
-
-void printWorldMatrix(vector<vector<WorldBlock *>> p_matrix) {
-    cout << "Print Matrix World\n";
-    cout << "Matrix Size: " << p_matrix.size() << " x " <<  p_matrix[0].size() << "\n";
-    for (int row = 0; row < p_matrix.size(); row++) {
-        for (int col = 0; col < p_matrix[row].size(); col++) {
-            if (p_matrix[row][col]->isOccupied) {
-                cout << "[" << p_matrix[row][col]->occupantPtr->getSymbol() << "]";
-            } else {
-                cout << "[ ]";
-            }
-        }
-        cout << "\n";
-    }
 }
 
 CreatureCount countBugs(vector<vector<WorldBlock *>> p_matrix) {

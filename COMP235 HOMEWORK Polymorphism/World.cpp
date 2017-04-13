@@ -34,6 +34,20 @@ World::World(int p_size_x, int p_size_y) {
     }
 }
 
+bool World::cellIsOccupied(int p_x, int p_y) {
+    bool tBool = false;
+    if (vWorldMatrix[p_x][p_y]->isOccupied) {
+        tBool = true;
+    }
+    return tBool;
+}
+
+// set cell pointer
+void World::setCellPointer(int p_x, int p_y, Organism ptr, bool p_occupy) {
+    vWorldMatrix[p_x][p_y]->occupantPtr = &ptr;
+    vWorldMatrix[p_x][p_y]->isOccupied = p_occupy;
+}
+
 void World::printWorldSize() {
     cout << "World X Size: " << vWorldMatrix.size() << endl;
     cout << "World Y Size: " << vWorldMatrix[0].size() << endl;
