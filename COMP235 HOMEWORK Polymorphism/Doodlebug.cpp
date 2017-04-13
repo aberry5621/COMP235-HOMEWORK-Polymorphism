@@ -49,15 +49,15 @@ void Doodlebug::die(World p_world_obj) {
 }
 
 void Doodlebug::move() {
-    cout << "Dbug Move Called!\n";
+    // cout << "Dbug Move Called!\n";
     
     /* randomly move left right up down */
 
     // get current position x, y coords on grid
-    int cur_x = m_pos_x;
-    int cur_y = m_pos_y;
-    cout << "Current X: " << cur_x << "\n";
-    cout << "Current Y: " << cur_y << "\n";
+    int cur_x = m_pos_x; // this doodlebug's x pos
+    int cur_y = m_pos_y; // this doodlebug's y pos
+    //cout << "Current Doodlebug X: " << cur_x << "\n";
+    //cout << "Current Doodlebug Y: " << cur_y << "\n";
     
     // random generate move direction
     // 1: left -1,0
@@ -65,7 +65,7 @@ void Doodlebug::move() {
     // 3: right 1,0
     // 4: down 0,-1
     int whichWay = Organism::randomGen(1, 4);
-    cout << "Which Way: " << whichWay << "\n";
+    //cout << "Which Way: " << whichWay << "\n";
     
     // for each move direction
     // check if move direction is valid
@@ -77,27 +77,48 @@ void Doodlebug::move() {
             // check y is not at zero column
 
             if (cur_y == 0) {
-                cout << "Going left but alredy leftmost, RUH ROH! \n";
+                // cant go left, dont do it
+                //cout << "Going left but alredy leftmost, RUH ROH! \n";
+            } else if (cur_y > 0) {
+                
+                // check next left space
+                int nextLeft = cur_y - 1;
+                //cout << "This bugs next left coords: " << cur_x << "," << nextLeft << "\n";
+                
+                //cout << "Left space is occupied bool check = ";
+                //bool tBool = worldObjectPtr->cellIsOccupied(cur_x, nextLeft);
+                //cout << tBool << "\n";
+                //cout << "\n";
             }
-            
-            if (cur_y > 0) {
-                cout << "Going left! \n";
-            }
-            
-            
             
             break;
         case 2:
             // up
-            cout << "Going up! \n";
+            //cout << "Going up! \n";
             break;
         case 3:
             // right
-            cout << "Going right! \n";
+            //cout << "Going right! \n";
+            
+            if (cur_x == 19) {
+                // cant go right, dont do it
+                //cout << "Going right but alredy rightmost, RUH ROH! \n";
+            } else if (cur_x < 19) {
+                
+                // check next right space
+                int nextRight = cur_x + 1;
+                //cout << "This bugs next right coords: " << nextRight << "," << cur_y << "\n";
+                
+                //cout << "Right space is occupied bool check = ";
+                // bool tBool = worldObjectPtr->cellIsOccupied(nextRight, cur_y);
+                // cout << tBool << "\n";
+                //cout << "\n";
+            }
+            
             break;
         case 4:
             // down
-            cout << "Going down! \n";
+            //cout << "Going down! \n";
             break;
         default:
             break;

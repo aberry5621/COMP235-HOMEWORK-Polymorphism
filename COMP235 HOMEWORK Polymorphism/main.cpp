@@ -14,10 +14,12 @@
 #include "Doodlebug.hpp"
 using std::vector;
 using std::cout;
+using std::cin;
 using std::endl;
 
 // main function declares
 void stepConfirmMessage();
+void readCoords(World p_world);
 void quitSimulation();
 
 int get_rand(int p_lb, int p_ub);
@@ -84,7 +86,7 @@ int main() {
     do {
         // move doodlebugs
         for (int i = 0; i < vDoodlebugs.size(); i++) {
-            cout << "Moving Doodlebug Number: " << i+1 << endl;
+            //cout << "Moving Doodlebug Number: " << i+1 << endl;
             vDoodlebugs[i]->move();
         }
         
@@ -98,11 +100,14 @@ int main() {
         SimBugWorld.printWorldContents();
         
         // user choice
-        cout << "enter n to step forward, q to quit" << endl;
+        cout << "enter n to step forward, r to read cell, q to quit" << endl;
         char usr_input = ' ';
         std::cin >> usr_input;
         if (usr_input == 'n') {
             stepConfirmMessage();
+        } else if (usr_input == 'r') {
+            // read coord details
+            readCoords(SimBugWorld);
         } else if (usr_input == 'q') {
             quitSimulation();
         }
@@ -111,11 +116,32 @@ int main() {
     return 0;
 }
 
-/* 
+/*
  main function definitions
  */
 void stepConfirmMessage() {
     cout << "Stepping forward in time!" << endl;
+}
+
+void readCoords(World p_world) {
+    cout << "Read Coords!" << endl;
+    cout << "Enter X value: ";
+    int x = 0;
+    cin >> x;
+    cout << "Enter Y value: ";
+    int y = 0;
+    cin >> y;
+    
+    cout << "Reading cell " << x << "," << y << endl;
+    
+    bool bOccupied = p_world.cellIsOccupied(x, y);
+    if (bOccupied) {
+        cout << "Cell is occupied!\n";
+        p_world.checkCellContents(x, y);
+    } else {
+        cout << "Cell is NOT occupied!\n";
+    }
+    
 }
 
 void quitSimulation() {

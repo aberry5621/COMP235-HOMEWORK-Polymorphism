@@ -42,7 +42,9 @@ bool World::cellIsOccupied(int p_x, int p_y) {
     cout << "cellIsOccupied checking location " << p_x << "," << p_y << endl;
     bool tBool = false;
     if ((p_x >= 0 && p_x < m_size_x) && (p_y >= 0 && p_y < m_size_y)) {
-        if (vWorldMatrix[p_x][p_y]->isOccupied) {
+        WorldBlock * tmpPtr;
+        tmpPtr = vWorldMatrix[p_x][p_y];
+        if (tmpPtr->isOccupied) {
             tBool = true;
         }
     } else {
@@ -50,6 +52,18 @@ bool World::cellIsOccupied(int p_x, int p_y) {
         cout << "Dont trust bool tBool!\n";
     }
     return tBool;
+}
+
+void World::checkCellContents(int p_x, int p_y) {
+    WorldBlock * tmpPtr;
+    tmpPtr = vWorldMatrix[p_x][p_y];
+    char bugChar = tmpPtr->occupantPtr->getSymbol();
+    if (bugChar == 'D') {
+        cout << "This cell contains a Doodlebug!" << endl;
+    } else if (bugChar == 'A') {
+        cout << "This cell contains an Ant!" << endl;
+    }
+    
 }
 
 // set cell pointer
