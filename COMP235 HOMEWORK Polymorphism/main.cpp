@@ -37,7 +37,7 @@ int main() {
 
     // create world
     
-    World bugWorld(WORLD_SIZE, WORLD_SIZE);
+    World SimBugWorld(WORLD_SIZE, WORLD_SIZE);
     
     // populate initial bugs
     
@@ -48,12 +48,14 @@ int main() {
     while (antsSpawned < QTY_ANTS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if ( ! (bugWorld.cellIsOccupied(r_x, r_y))) {
+        if ( ! (SimBugWorld.cellIsOccupied(r_x, r_y))) {
             Ant * tmpAntPtr;
             tmpAntPtr = new Ant(r_x, r_y);
             vAnts.push_back(tmpAntPtr);
-            bugWorld.setCellPointer(r_x, r_y, *tmpAntPtr, true);
+            SimBugWorld.setCellPointer(r_x, r_y, *tmpAntPtr, true);
             antsSpawned++;
+            cout << "Populating Ant Number: " << antsSpawned << " ";
+            cout << "at location " << r_x << "," << r_y << endl;
         }
     }
 
@@ -64,12 +66,14 @@ int main() {
     while (dbugsSpawned < QTY_DOODLEBUGS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if ( ! (bugWorld.cellIsOccupied(r_x, r_y))) {
+        if ( ! (SimBugWorld.cellIsOccupied(r_x, r_y))) {
             Doodlebug * tmpDbugPtr;
-            tmpDbugPtr = new Doodlebug(r_x, r_y);
+            tmpDbugPtr = new Doodlebug(r_x, r_y, SimBugWorld);
             vDoodlebugs.push_back(tmpDbugPtr);
-            bugWorld.setCellPointer(r_x, r_y, *tmpDbugPtr, true);
+            SimBugWorld.setCellPointer(r_x, r_y, *tmpDbugPtr, true);
             dbugsSpawned++;
+            cout << "Populating Doodlebug Number: " << dbugsSpawned << " ";
+            cout << "at location " << r_x << "," << r_y << endl;
         }
     }
 
@@ -78,13 +82,20 @@ int main() {
     bool stepforth = true;
 
     do {
+        // move doodlebugs
+        for (int i = 0; i < vDoodlebugs.size(); i++) {
+            cout << "Moving Doodlebug Number: " << i+1 << endl;
+            vDoodlebugs[i]->move();
+        }
+        
         // age doodlebugs
         for (int i = 0; i < vDoodlebugs.size(); i++) {
-            vDoodlebugs[i]->increaseAge(bugWorld);
+            vDoodlebugs[i]->increaseAge(SimBugWorld);
         }
-        bugWorld.printWorldSize();
-        bugWorld.countBugs();
-        bugWorld.printWorldContents();
+        
+        SimBugWorld.printWorldSize();
+        SimBugWorld.countBugs();
+        SimBugWorld.printWorldContents();
         
         // user choice
         cout << "enter n to step forward, q to quit" << endl;

@@ -18,6 +18,10 @@ World::World() {
 }
 
 World::World(int p_size_x, int p_size_y) {
+    // store x y world size in world size member variables
+    m_size_x = p_size_x;
+    m_size_y = p_size_y;
+    
     // construct world
     vWorldMatrix.resize(p_size_x);
     
@@ -35,9 +39,15 @@ World::World(int p_size_x, int p_size_y) {
 }
 
 bool World::cellIsOccupied(int p_x, int p_y) {
+    cout << "cellIsOccupied checking location " << p_x << "," << p_y << endl;
     bool tBool = false;
-    if (vWorldMatrix[p_x][p_y]->isOccupied) {
-        tBool = true;
+    if ((p_x >= 0 && p_x < m_size_x) && (p_y >= 0 && p_y < m_size_y)) {
+        if (vWorldMatrix[p_x][p_y]->isOccupied) {
+            tBool = true;
+        }
+    } else {
+        cout << "ERROR: cellIsOccupied check outside grid bounds! ";
+        cout << "Dont trust bool tBool!\n";
     }
     return tBool;
 }
@@ -49,9 +59,7 @@ void World::setCellPointer(int p_x, int p_y, Organism &ptr, bool p_occupy) {
 }
 
 void World::clearCell(int p_x, int p_y) {
-    cout << "Clear Cell with coords: " << p_x << "," << p_y << "\n";
-    // like one cell world build
-    // set new world block tmp ptr (maybe don't even need this)
+    // cout << "Clear Cell with coords: " << p_x << "," << p_y << "\n";
     tmpWorldBlockPtr = new WorldBlock();
     // point cell x, y to it
     tmpWorldBlockPtr = vWorldMatrix[p_x][p_y];

@@ -22,6 +22,8 @@ public:
     // setters / mutators
     void setSymbol(char p_sym);
     virtual void setPosition(int p_pos_x, int p_pos_y);
+    // random chooser
+    int randomGen(int lb, int ub);
     // move
     void move();
     // breed
@@ -30,7 +32,7 @@ public:
     ~Organism();
 private:
     // data vars
-    char character_symbol = '0';
+    char character_symbol = '\0';
     int age = 0;
     int m_pos_x = 0;
     int m_pos_y = 0;

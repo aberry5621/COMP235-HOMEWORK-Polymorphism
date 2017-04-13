@@ -9,6 +9,7 @@
 #include "World.hpp"
 #include "Ant.hpp"
 #include <iostream>
+using std::cout;
 
 Ant::Ant() {
     // blank constructor
@@ -35,6 +36,7 @@ void Ant::setPosition(int p_pos_x, int p_pos_y) {
 }
 
 void Ant::move() {
+    cout << "Ant Move Called!\n";
     /* randomly move left right up down */
     
     // get current position x, y coords on grid
