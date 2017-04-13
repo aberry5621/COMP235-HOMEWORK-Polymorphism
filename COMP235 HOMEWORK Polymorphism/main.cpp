@@ -59,7 +59,6 @@ int main() {
     while (antsSpawned < QTY_ANTS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        
         if ( ! (newWorld.cellIsOccupied(r_x, r_y))) {
             Ant * tmpAntPtr;
             tmpAntPtr = new Ant(r_x, r_y);
@@ -71,7 +70,7 @@ int main() {
     
     newWorld.printWorldContents();
     
-    /*
+    
     // Vector of Doodlebugs
     vector<Doodlebug *> vDoodlebugs(0);
     // 100 doodlebugs
@@ -79,16 +78,19 @@ int main() {
     while (dbugsSpawned < QTY_DOODLEBUGS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if ( ! (vWorldMatrix[r_x][r_y]->isOccupied)) {
+        if ( ! (newWorld.cellIsOccupied(r_x, r_y))) {
             Doodlebug * tmpDbugPtr;
             tmpDbugPtr = new Doodlebug(r_x, r_y);
             vDoodlebugs.push_back(tmpDbugPtr);
-            vWorldMatrix[r_x][r_y]->occupantPtr = tmpDbugPtr;
-            vWorldMatrix[r_x][r_y]->isOccupied = true;
+            newWorld.setCellPointer(r_x, r_y, *tmpDbugPtr, true);
             dbugsSpawned++;
         }
     }
-    */
+    
+    newWorld.printWorldContents();
+    
+    
+    /**/
     // count the bugs
     cout << "Critter Count:\n";
     // CreatureCount count = countBugs(vWorldMatrix);
