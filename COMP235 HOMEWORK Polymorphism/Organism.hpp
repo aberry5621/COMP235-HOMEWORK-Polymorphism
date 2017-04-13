@@ -27,6 +27,7 @@ public:
     // breed
     // eat
     // die
+    ~Organism();
 private:
     // data vars
     char character_symbol = '0';

@@ -37,11 +37,16 @@ void Doodlebug::setPosition(int p_pos_x, int p_pos_y) {
     m_pos_y = p_pos_y;
 }
 
-void Doodlebug::increaseAge() {
+void Doodlebug::increaseAge(World p_world_obj) {
     this->age++;
     if (age > 3) {
-        setSymbol('X');
+        // too old, die
+        die(p_world_obj);
     }
+}
+
+void Doodlebug::die(World p_world_obj) {
+    p_world_obj.clearCell(m_pos_x, m_pos_y);
 }
 
 void Doodlebug::move(vector<vector<WorldBlock *>> p_matrix, vector<Doodlebug> p_vec) {
@@ -49,8 +54,6 @@ void Doodlebug::move(vector<vector<WorldBlock *>> p_matrix, vector<Doodlebug> p_
     
     // testing
     cout << "Matrix coord ping 0,0: " << p_matrix[0][0] << "\n";
-    
-    
     
     /* randomly move left right up down */
     
@@ -71,4 +74,9 @@ void Doodlebug::move(vector<vector<WorldBlock *>> p_matrix, vector<Doodlebug> p_
     // do not move
     // otherwise, move
     
+}
+
+// DIE
+Doodlebug::~Doodlebug() {
+    delete this;
 }

@@ -22,9 +22,10 @@ public:
     char getSymbol();
     void setSymbol(char p_sym);
     void setPosition(int p_pos_x, int p_pos_y);
-    void increaseAge();
+    void increaseAge(World p_world_obj);
+    void die(World p_world_obj);
     void move(vector<vector<WorldBlock *>> p_matrix, vector<Doodlebug> p_vec);
-
+    ~Doodlebug();
 private:
     char character_symbol = 'D';
     int age = 0;

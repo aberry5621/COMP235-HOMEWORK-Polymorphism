@@ -18,7 +18,7 @@ World::World() {
 }
 
 World::World(int p_size_x, int p_size_y) {
-
+    // construct world
     vWorldMatrix.resize(p_size_x);
     
     for (int i = 0; i < p_size_x; i++) {
@@ -46,6 +46,17 @@ bool World::cellIsOccupied(int p_x, int p_y) {
 void World::setCellPointer(int p_x, int p_y, Organism &ptr, bool p_occupy) {
     vWorldMatrix[p_x][p_y]->occupantPtr = &ptr;
     vWorldMatrix[p_x][p_y]->isOccupied = p_occupy;
+}
+
+void World::clearCell(int p_x, int p_y) {
+    cout << "Clear Cell with coords: " << p_x << "," << p_y << "\n";
+    // like one cell world build
+    // set new world block tmp ptr (maybe don't even need this)
+    tmpWorldBlockPtr = new WorldBlock();
+    // point cell x, y to it
+    tmpWorldBlockPtr = vWorldMatrix[p_x][p_y];
+    tmpWorldBlockPtr->isOccupied = false;
+    tmpWorldBlockPtr->occupantPtr = nullptr;
 }
 
 void World::printWorldSize() {

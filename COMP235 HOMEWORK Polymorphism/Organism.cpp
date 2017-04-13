@@ -31,3 +31,8 @@ void Organism::setPosition(int p_pos_x, int p_pos_y) {
 void Organism::move() {
     // void
 }
+
+// DIE
+Organism::~Organism() {
+    delete this;
+}

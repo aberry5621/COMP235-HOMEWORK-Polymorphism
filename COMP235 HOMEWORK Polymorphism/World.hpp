@@ -39,6 +39,9 @@ public:
     // set cell pointer
     void setCellPointer(int p_x, int p_y, Organism &ptr, bool p_occupy);
     
+    // clear cell
+    void clearCell(int p_x, int p_y);
+    
     // print out size of world
     void printWorldSize();
     
@@ -50,6 +53,7 @@ public:
     
 private:
     vector<vector<WorldBlock *>> vWorldMatrix;
+    WorldBlock * tmpWorldBlockPtr;
     int m_size_x;
     int m_size_y;
 };

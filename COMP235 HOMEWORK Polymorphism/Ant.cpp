@@ -55,3 +55,8 @@ void Ant::move() {
     // otherwise, move
     
 }
+
+// DIE
+Ant::~Ant() {
+    delete this;
+}

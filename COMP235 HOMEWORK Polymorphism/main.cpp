@@ -35,9 +35,9 @@ int main() {
     const int QTY_ANTS = 5;
     const int QTY_DOODLEBUGS = 100;
 
-    // new world test
+    // create world
     
-    World newWorld(20, 20);
+    World bugWorld(WORLD_SIZE, WORLD_SIZE);
     
     // populate initial bugs
     
@@ -48,11 +48,11 @@ int main() {
     while (antsSpawned < QTY_ANTS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if ( ! (newWorld.cellIsOccupied(r_x, r_y))) {
+        if ( ! (bugWorld.cellIsOccupied(r_x, r_y))) {
             Ant * tmpAntPtr;
             tmpAntPtr = new Ant(r_x, r_y);
             vAnts.push_back(tmpAntPtr);
-            newWorld.setCellPointer(r_x, r_y, *tmpAntPtr, true);
+            bugWorld.setCellPointer(r_x, r_y, *tmpAntPtr, true);
             antsSpawned++;
         }
     }
@@ -64,11 +64,11 @@ int main() {
     while (dbugsSpawned < QTY_DOODLEBUGS) {
         int r_x = get_rand(0,19);
         int r_y = get_rand(0,19);
-        if ( ! (newWorld.cellIsOccupied(r_x, r_y))) {
+        if ( ! (bugWorld.cellIsOccupied(r_x, r_y))) {
             Doodlebug * tmpDbugPtr;
             tmpDbugPtr = new Doodlebug(r_x, r_y);
             vDoodlebugs.push_back(tmpDbugPtr);
-            newWorld.setCellPointer(r_x, r_y, *tmpDbugPtr, true);
+            bugWorld.setCellPointer(r_x, r_y, *tmpDbugPtr, true);
             dbugsSpawned++;
         }
     }
@@ -80,11 +80,11 @@ int main() {
     do {
         // age doodlebugs
         for (int i = 0; i < vDoodlebugs.size(); i++) {
-            vDoodlebugs[i]->increaseAge();
+            vDoodlebugs[i]->increaseAge(bugWorld);
         }
-        newWorld.printWorldSize();
-        newWorld.countBugs();
-        newWorld.printWorldContents();
+        bugWorld.printWorldSize();
+        bugWorld.countBugs();
+        bugWorld.printWorldContents();
         
         // user choice
         cout << "enter n to step forward, q to quit" << endl;
