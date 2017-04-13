@@ -23,7 +23,7 @@ struct CreatureCount {
 // main function declares
 void stepConfirmMessage();
 void quitSimulation();
-vector<vector<WorldBlock *>> createWorld(int size);
+
 void printWorldMatrix(vector<vector<WorldBlock *>>);
 CreatureCount countBugs(vector<vector<WorldBlock *>>);
 
@@ -41,8 +41,8 @@ int main() {
     const int WORLD_SIZE = 20;
     const int QTY_ANTS = 5;
     const int QTY_DOODLEBUGS = 100;
-    // make a 2d matrix world to fill with bugs
-    vector<vector<WorldBlock *>> vWorldMatrix = createWorld(WORLD_SIZE);
+
+    /*
     // populate initial bugs
     
     // Vector of Ants
@@ -77,16 +77,22 @@ int main() {
             dbugsSpawned++;
         }
     }
-    
+    */
     // count the bugs
     cout << "Critter Count:\n";
-    CreatureCount count = countBugs(vWorldMatrix);
-    cout << "Ants:" << count.num_ants << "\n";
-    cout << "Doodlebugs:" << count.num_dbugs << "\n";
+    // CreatureCount count = countBugs(vWorldMatrix);
+    // cout << "Ants:" << count.num_ants << "\n";
+    // cout << "Doodlebugs:" << count.num_dbugs << "\n";
 
 // new world test
     
     World newWorld(20, 20);
+    
+    newWorld.printWorldSize();
+    
+    newWorld.printWorldContents();
+    
+    
     
     
     
@@ -99,12 +105,12 @@ int main() {
         // operate on bugs
         // ant actions
         // show the world
-        printWorldMatrix(vWorldMatrix);
+        // printWorldMatrix(vWorldMatrix);
         // doodlebug actions
         // move doodlebugs
-        for (int i = 0; i < vDoodlebugs.size(); i++) {
-            // vDoodlebugs[i]->move(vWorldMatrix, vector<Doodlebug> & vDoodlebugs);
-        }
+//        for (int i = 0; i < vDoodlebugs.size(); i++) {
+//            // vDoodlebugs[i]->move(vWorldMatrix, vector<Doodlebug> & vDoodlebugs);
+//        }
         // user choice
         cout << "enter n to step forward, q to quit" << endl;
         char usr_input = ' ';

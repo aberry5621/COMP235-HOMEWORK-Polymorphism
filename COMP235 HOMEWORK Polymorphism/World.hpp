@@ -26,7 +26,13 @@ public:
     World(int p_size_x, int p_size_y);
     // check if cell is occupied
     // add something to a cell
+    
     // print out size of world
+    void printWorldSize();
+    
+    // print out contents of the world
+    void printWorldContents();
+    
     // other world tasks
 private:
     vector<vector<WorldBlock *>> vWorldMatrix;
@@ -35,3 +41,14 @@ private:
 };
 
 #endif /* World_hpp */
+
+
+
+
+
+
+
+
+
+
+

@@ -7,8 +7,11 @@
 //
 
 #include "World.hpp"
+#include <iostream>
 #include <vector>
 using std::vector;
+using std::cout;
+using std::endl;
 
 World::World() {
     // on this site in 1984, nothing happened
@@ -31,5 +34,47 @@ World::World(int p_size_x, int p_size_y) {
     }
 }
 
+void World::printWorldSize() {
+    cout << "World X Size: " << vWorldMatrix.size() << endl;
+    cout << "World Y Size: " << vWorldMatrix[0].size() << endl;
 
-// nothing here yet
+}
+
+void World::printWorldContents() {
+    // print the grid
+    for (int row = 0; row < vWorldMatrix.size(); row++) {
+        for (int col = 0; col < vWorldMatrix[row].size(); col++) {
+            if (vWorldMatrix[row][col]->isOccupied) {
+                cout << "[" << vWorldMatrix[row][col]->occupantPtr->getSymbol() << "]";
+            } else {
+                cout << "[ ]";
+            }
+        }
+        cout << "\n";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
