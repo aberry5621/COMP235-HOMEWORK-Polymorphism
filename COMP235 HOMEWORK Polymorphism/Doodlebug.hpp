@@ -16,7 +16,7 @@ class Doodlebug : public Organism {
 
 public:
     Doodlebug();
-    Doodlebug(int pos_x, int pos_y, World p_world);
+    Doodlebug(int pos_x, int pos_y, World *p_world);
     char getSymbol();
     void setSymbol(char p_sym);
     void setPosition(int p_pos_x, int p_pos_y);

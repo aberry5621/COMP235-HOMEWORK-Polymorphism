@@ -34,8 +34,8 @@ int main() {
     srand(static_cast<int>(time(0)));
     // INITIALIZE WORLD
     const int WORLD_SIZE = 20;
-    const int QTY_ANTS = 5;
-    const int QTY_DOODLEBUGS = 100;
+    const int QTY_ANTS = 100;
+    const int QTY_DOODLEBUGS = 5;
 
     // create world
     
@@ -70,7 +70,7 @@ int main() {
         int r_y = get_rand(0,19);
         if ( ! (SimBugWorld.cellIsOccupied(r_x, r_y))) {
             Doodlebug * tmpDbugPtr;
-            tmpDbugPtr = new Doodlebug(r_x, r_y, SimBugWorld);
+            tmpDbugPtr = new Doodlebug(r_x, r_y, &SimBugWorld);
             vDoodlebugs.push_back(tmpDbugPtr);
             SimBugWorld.setCellPointer(r_x, r_y, *tmpDbugPtr, true);
             dbugsSpawned++;
@@ -86,7 +86,7 @@ int main() {
     do {
         // move doodlebugs
         for (int i = 0; i < vDoodlebugs.size(); i++) {
-            //cout << "Moving Doodlebug Number: " << i+1 << endl;
+            cout << "Moving Doodlebug Number: " << i+1 << endl;
             vDoodlebugs[i]->move();
         }
         

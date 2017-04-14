@@ -42,9 +42,9 @@ bool World::cellIsOccupied(int p_x, int p_y) {
     cout << "cellIsOccupied checking location " << p_x << "," << p_y << endl;
     bool tBool = false;
     if ((p_x >= 0 && p_x < m_size_x) && (p_y >= 0 && p_y < m_size_y)) {
-        WorldBlock * tmpPtr;
-        tmpPtr = vWorldMatrix[p_x][p_y];
-        if (tmpPtr->isOccupied) {
+        cout << "Passed valid x y check!" << endl;
+        tmpWorldBlockPtr = vWorldMatrix[p_x][p_y];
+        if (tmpWorldBlockPtr->isOccupied) {
             tBool = true;
         }
     } else {
