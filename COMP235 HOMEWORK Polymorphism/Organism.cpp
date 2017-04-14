@@ -10,9 +10,16 @@
 #include "Organism.hpp"
 #include <iostream>
 using std::cout;
+using std::endl;
 
 Organism::Organism() {
     // blank constructor
+}
+
+void Organism::shoutOut() {
+    cout << "HEY! Check out my symbol: ";
+    cout << this->getSymbol();
+    cout << endl;
 }
 
 char Organism::getSymbol() {

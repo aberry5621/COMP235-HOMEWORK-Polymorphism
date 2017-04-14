@@ -37,6 +37,20 @@ int main() {
     const int QTY_ANTS = 100;
     const int QTY_DOODLEBUGS = 5;
 
+    
+    // inheritance test
+    Ant eensy;
+    Doodlebug weensy;
+    
+    cout << "Eensy says: ";
+    eensy.shoutOut();
+    cout << endl;
+    cout << "Teensy says: ";
+    weensy.shoutOut();
+    
+    cout << endl;
+    
+    
     // create world
     
     World SimBugWorld(WORLD_SIZE, WORLD_SIZE);

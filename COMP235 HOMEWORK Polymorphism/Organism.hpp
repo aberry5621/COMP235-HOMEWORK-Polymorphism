@@ -17,6 +17,7 @@ class Organism {
 public:
     // spawn - this may be better said as 'constructor'
     Organism();
+    void shoutOut();
     // getters / accessors
     virtual char getSymbol();
     // setters / mutators
