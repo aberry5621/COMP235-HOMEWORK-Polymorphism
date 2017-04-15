@@ -5,12 +5,11 @@
 //  Created by gb_man on 4/11/17.
 //  Copyright © 2017 alex. All rights reserved.
 //
+#ifndef Doodlebug_hpp
+#define Doodlebug_hpp
 
 #include "World.hpp"
 #include "Organism.hpp"
-
-#ifndef Doodlebug_hpp
-#define Doodlebug_hpp
 
 class Doodlebug : public Organism {
 

@@ -5,8 +5,6 @@
 //  Created by gb_man on 4/11/17.
 //  Copyright © 2017 alex. All rights reserved.
 //
-
-
 #ifndef Organism_hpp
 #define Organism_hpp
 
@@ -17,9 +15,10 @@ class Organism {
 public:
     // spawn - this may be better said as 'constructor'
     Organism();
+    // contructor includes world reference
     void shoutOut();
     // getters / accessors
-    virtual char getSymbol();
+    virtual char getSymbol() = 0;
     // setters / mutators
     void setSymbol(char p_sym);
     virtual void setPosition(int p_pos_x, int p_pos_y);
@@ -32,7 +31,6 @@ public:
     // die
     ~Organism();
 private:
-    // data vars
     char character_symbol = '\0';
     int age = 0;
     int m_pos_x = 0;

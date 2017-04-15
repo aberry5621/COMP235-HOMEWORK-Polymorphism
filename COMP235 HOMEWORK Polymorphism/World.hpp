@@ -6,12 +6,12 @@
 //  Copyright © 2017 alex. All rights reserved.
 //
 
+#ifndef World_hpp
+#define World_hpp
+
 #include "Organism.hpp"
 #include <vector>
 using std::vector;
-
-#ifndef World_hpp
-#define World_hpp
 
 struct WorldBlock {
     int pos_x = 0;

@@ -22,11 +22,6 @@ void Organism::shoutOut() {
     cout << endl;
 }
 
-char Organism::getSymbol() {
-    std::cout << "ORGANISM GET SYMBOL INVOKED!\n";
-    return character_symbol;
-}
-
 void Organism::setSymbol(char p_sym) {
     character_symbol = p_sym;
 }
@@ -41,25 +36,7 @@ int Organism::randomGen(int lb, int ub) {
 }
 
 void Organism::move() {
-    cout << "Organism Move Called!\n";
-    /* randomly move left right up down */
-    
-    // get current position x, y coords on grid
-    
-    // random generate move direction
-    // left -1,0
-    // up 0,1
-    // right 1,0
-    // down 0,-1
-    
-    // check if move direction is valid
-    // is destination on grid?
-    // is destination free? (not occupied)
-    
-    // if neighoring cell is occupied,
-    // or if selected move is off - grid
-    // do not move
-    // otherwise, move
+  // organismz cant move
     
 }
 

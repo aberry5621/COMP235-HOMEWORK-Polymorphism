@@ -37,23 +37,43 @@ int main() {
     const int QTY_ANTS = 100;
     const int QTY_DOODLEBUGS = 5;
 
+    // create world
+    World SimBugWorld(WORLD_SIZE, WORLD_SIZE);
     
     // inheritance test
-    Ant eensy;
-    Doodlebug weensy;
+    Ant * tmpAnt;
+    tmpAnt = new Ant(0, 0, &SimBugWorld);
+    Ant * eensy = tmpAnt;
     
+    Doodlebug * tmpDbug;
+    tmpDbug = new Doodlebug(0, 0, &SimBugWorld);
+    Doodlebug * weensy = tmpDbug;
+    
+    char symbol = '\0';
     cout << "Eensy says: ";
-    eensy.shoutOut();
+    eensy->shoutOut();
+    symbol = eensy->getSymbol();
+    cout << "Eensy says my direct symbol is " << symbol;
     cout << endl;
     cout << "Teensy says: ";
-    weensy.shoutOut();
+    weensy->shoutOut();
+    symbol = weensy->getSymbol();
+    cout << "Weensy says my direct symbol is " << symbol;
     
     cout << endl;
     
     
-    // create world
+    cout << "Eensy moves: ";
+    eensy->move();
+    cout << endl;
     
-    World SimBugWorld(WORLD_SIZE, WORLD_SIZE);
+    cout << "Teensy moves: ";
+    weensy->move();
+    
+    
+    cout << endl;
+    
+
     
     // populate initial bugs
     
@@ -66,7 +86,7 @@ int main() {
         int r_y = get_rand(0,19);
         if ( ! (SimBugWorld.cellIsOccupied(r_x, r_y))) {
             Ant * tmpAntPtr;
-            tmpAntPtr = new Ant(r_x, r_y);
+            tmpAntPtr = new Ant(r_x, r_y, &SimBugWorld);
             vAnts.push_back(tmpAntPtr);
             SimBugWorld.setCellPointer(r_x, r_y, *tmpAntPtr, true);
             antsSpawned++;
@@ -96,23 +116,33 @@ int main() {
     // simulate time
     // step forward when user presses enter key
     bool stepforth = true;
-
+    int iterationCount = 0;
     do {
-        // move doodlebugs
-        for (int i = 0; i < vDoodlebugs.size(); i++) {
-            cout << "Moving Doodlebug Number: " << i+1 << endl;
-            vDoodlebugs[i]->move();
-        }
         
-        // age doodlebugs
-        for (int i = 0; i < vDoodlebugs.size(); i++) {
-            vDoodlebugs[i]->increaseAge(SimBugWorld);
+        if (iterationCount > 0) {
+            // move doodlebugs
+            for (int i = 0; i < vDoodlebugs.size(); i++) {
+                cout << "Moving Doodlebug Number: " << i+1 << endl;
+                vDoodlebugs[i]->move();
+            }
+            
+            // move ants
+            for (int i = 0; i < vAnts.size(); i++) {
+                cout << "Moving Ant Number: " << i+1 << endl;
+                vAnts[i]->move();
+            }
+            
+            // age doodlebugs
+            for (int i = 0; i < vDoodlebugs.size(); i++) {
+                vDoodlebugs[i]->increaseAge(SimBugWorld);
+            }
         }
-        
+
         SimBugWorld.printWorldSize();
         SimBugWorld.countBugs();
         SimBugWorld.printWorldContents();
         
+        iterationCount++;
         // user choice
         cout << "enter n to step forward, r to read cell, q to quit" << endl;
         char usr_input = ' ';
