@@ -152,12 +152,14 @@ int main() {
         SimBugWorld.countBugs();
         SimBugWorld.printWorldContents();
         
-        iterationCount++;
+        
         // user choice
         cout << "enter n to step forward, r to read cell, q to quit" << endl;
         char usr_input = ' ';
         std::cin >> usr_input;
         if (usr_input == 'n') {
+            // only count iteration if moving forward in time
+            iterationCount++;
             stepConfirmMessage();
         } else if (usr_input == 'r') {
             // read coord details
