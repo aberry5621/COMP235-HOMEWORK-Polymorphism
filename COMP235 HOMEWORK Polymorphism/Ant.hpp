@@ -19,7 +19,9 @@ public:
     char getSymbol();
     void setSymbol(char p_sym);
     void setPosition(int p_pos_x, int p_pos_y);
+    void increaseAge(World p_world_obj);
     void move();
+    void die(World p_world_obj);
     ~Ant();
 private:
     World * worldObjectPtr;

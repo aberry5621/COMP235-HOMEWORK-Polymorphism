@@ -128,19 +128,22 @@ int main() {
         if (iterationCount > 0) {
             // move doodlebugs
             for (int i = 0; i < vDoodlebugs.size(); i++) {
-                cout << "Moving Doodlebug Number: " << i+1 << endl;
+                // cout << "Moving Doodlebug Number: " << i+1 << endl;
                 vDoodlebugs[i]->move();
             }
             
             // move ants
             for (int i = 0; i < vAnts.size(); i++) {
-                cout << "Moving Ant Number: " << i+1 << endl;
+                // cout << "Moving Ant Number: " << i+1 << endl;
                 vAnts[i]->move();
             }
-            
             // age doodlebugs
             for (int i = 0; i < vDoodlebugs.size(); i++) {
                 vDoodlebugs[i]->increaseAge(SimBugWorld);
+            }
+            // age ants
+            for (int i = 0; i < vAnts.size(); i++) {
+                vAnts[i]->increaseAge(SimBugWorld);
             }
         }
         

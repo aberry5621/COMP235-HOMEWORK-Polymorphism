@@ -36,8 +36,15 @@ void Ant::setPosition(int p_pos_x, int p_pos_y) {
     m_pos_y = p_pos_y;
 }
 
+void Ant::increaseAge(World p_world_obj) {
+    this->age++;
+    if (age > 3) {
+        // too old, die
+        die(p_world_obj);
+    }
+}
+
 void Ant::move() {
-    cout << "Ant Move Called!\n";
     /* randomly move left right up down */
     // get current position x, y coords on grid
     int cur_x = m_pos_x; // this ant's x pos
@@ -60,20 +67,13 @@ void Ant::move() {
             // check y is not at zero column
             if (cur_y == 0) {
                 // cant go left, dont do it
-                cout << "Going left but alredy leftmost, RUH ROH! \n";
                 break;
             }
             else if (cur_y > 0) {
                 // check next left space
                 int nextLeft = cur_y - 1;
-                cout << "This bugs next left coords: " << cur_x << "," << nextLeft << "\n";
-                cout << "Left space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(cur_x, nextLeft);
-                cout << tBool << "\n";
                 if (tBool == 0) {
-                    cout << "Left cell is open, ANT CAN MOVE LEFT!\n";
-                    cout << "Current ANT X: " << cur_x << "\n";
-                    cout << "Current ANT Y: " << cur_y << "\n";
                     Ant * tmpAnt = this;
                     this->worldObjectPtr->setCellPointer(cur_x, nextLeft, *tmpAnt, 1);
                     tmpAnt->setPosition(cur_x, nextLeft);
@@ -83,22 +83,14 @@ void Ant::move() {
             break;
         case 2:
             // up
-            //cout << "Going up! \n";
             if (cur_x == 0) {
                 // cant go up, dont do it
-                cout << "Going up but alredy uppermost, RUH ROH! \n";
                 break;
             } else {
                 // check next left space
                 int nextUp = cur_x - 1;
-                cout << "This bugs next up coords: " << nextUp << "," << cur_y << "\n";
-                cout << "Up space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(nextUp, cur_y);
-                cout << tBool << "\n";
                 if (tBool == 0) {
-                    cout << "UP cell is open, ANT CAN MOVE UP!\n";
-                    cout << "Current ANT X: " << cur_x << "\n";
-                    cout << "Current ANT Y: " << cur_y << "\n";
                     Ant * tmpAnt = this;
                     worldObjectPtr->setCellPointer(nextUp, cur_y, *tmpAnt, 1);
                     tmpAnt->setPosition(nextUp, cur_y);
@@ -111,19 +103,12 @@ void Ant::move() {
             //cout << "Going right! \n";
             if (cur_y == 19) {
                 // cant go right, dont do it
-                cout << "Going right but alredy rightmost, RUH ROH! \n";
                 break;
             } else {
                 // check next right space
                 int nextRight = cur_y + 1;
-                cout << "This bugs next right coords: " << cur_x << "," << nextRight << "\n";
-                cout << "Right space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(cur_x, nextRight);
-                cout << tBool << "\n";
                 if (tBool == 0) {
-                    cout << "RIGHT cell is open, ANT CAN MOVE RIGHT!\n";
-                    cout << "Current ANT X: " << cur_x << "\n";
-                    cout << "Current ANT Y: " << cur_y << "\n";
                     Ant * tmpAnt = this;
                     worldObjectPtr->setCellPointer(cur_x, nextRight, *tmpAnt, 1);
                     tmpAnt->setPosition(cur_x, nextRight);
@@ -136,19 +121,12 @@ void Ant::move() {
             //cout << "Going down! \n";
             if (cur_x == 19) {
                 // cant go down, dont do it
-                cout << "Going down but alredy lowermost, RUH ROH! \n";
                 break;
             } else {
                 // check next lower space
                 int nextLower = cur_x + 1;
-                cout << "This bugs next lower coords: " << nextLower << "," << cur_y << "\n";
-                cout << "Lower space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(nextLower, cur_y);
-                cout << tBool << "\n";
                 if (tBool == 0) {
-                    cout << "DOWN cell is open, ANT CAN MOVE DOWN!\n";
-                    cout << "Current ANT X: " << cur_x << "\n";
-                    cout << "Current ANT Y: " << cur_y << "\n";
                     Ant * tmpAnt = this;
                     worldObjectPtr->setCellPointer(nextLower, cur_y, *tmpAnt, 1);
                     tmpAnt->setPosition(nextLower, cur_y);
@@ -163,4 +141,8 @@ void Ant::move() {
 }
 
 // DIE
+void Ant::die(World p_world_obj) {
+    p_world_obj.clearCell(m_pos_x, m_pos_y);
+}
+
 Ant::~Ant() {}
