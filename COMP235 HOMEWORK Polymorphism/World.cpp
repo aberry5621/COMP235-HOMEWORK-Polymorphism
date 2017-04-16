@@ -40,7 +40,7 @@ World::World(int p_size_x, int p_size_y) {
 
 bool World::cellIsOccupied(int p_x, int p_y) {
     bool tBool = false;
-    if ((p_x >= 0 && p_x < m_size_x) && (p_y >= 0 && p_y < m_size_y)) {   
+    if ((p_x >= 0 && p_x < m_size_x) && (p_y >= 0 && p_y < m_size_y)) {
         tmpWorldBlockPtr = vWorldMatrix[p_x][p_y];
         if (tmpWorldBlockPtr->isOccupied) {
             tBool = true;

@@ -10,6 +10,7 @@
 #include "Ant.hpp"
 #include <iostream>
 using std::cout;
+using std::endl;
 
 Ant::Ant() {
     // blank constructor
@@ -39,6 +40,7 @@ void Ant::setPosition(int p_pos_x, int p_pos_y) {
 void Ant::increaseAge(World p_world_obj) {
     this->age++;
     if (age > 3) {
+        cout << "Old ANT, clear cell: " << endl;
         // too old, die
         die(p_world_obj);
     }
@@ -49,14 +51,12 @@ void Ant::move() {
     // get current position x, y coords on grid
     int cur_x = m_pos_x; // this ant's x pos
     int cur_y = m_pos_y; // this ant's y pos
-
     // random generate move direction
     // 1: left -1,0
     // 2: up 0,1
     // 3: right 1,0
     // 4: down 0,-1
     int whichWay = randomGen(1, 4);
-    //cout << "Which Way: " << whichWay << "\n";
     // for each move direction
     // check if move direction is valid
     // is destination on grid?
@@ -142,7 +142,7 @@ void Ant::move() {
 
 // DIE
 void Ant::die(World p_world_obj) {
-    p_world_obj.clearCell(m_pos_x, m_pos_y);
+    worldObjectPtr->clearCell(m_pos_x, m_pos_y);
 }
 
 Ant::~Ant() {}

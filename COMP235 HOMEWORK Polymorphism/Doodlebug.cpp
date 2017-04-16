@@ -10,6 +10,7 @@
 #include "Doodlebug.hpp"
 #include <iostream>
 using std::cout;
+using std::endl;
 
 Doodlebug::Doodlebug() {
     // blank constructor
@@ -39,6 +40,7 @@ void Doodlebug::setPosition(int p_pos_x, int p_pos_y) {
 void Doodlebug::increaseAge(World p_world_obj) {
     this->age++;
     if (age > 3) {
+        cout << "Old DBUG, clear cell: " << endl;
         // too old, die
         die(p_world_obj);
     }
@@ -49,15 +51,12 @@ void Doodlebug::move() {
     // get current position x, y coords on grid
     int cur_x = m_pos_x; // this doodlebug's x pos
     int cur_y = m_pos_y; // this doodlebug's y pos
-    //cout << "Current Doodlebug X: " << cur_x << "\n";
-    //cout << "Current Doodlebug Y: " << cur_y << "\n";
     // random generate move direction
     // 1: left -1,0
     // 2: up 0,1
     // 3: right 1,0
     // 4: down 0,-1
     int whichWay = Organism::randomGen(1, 4);
-    //cout << "Which Way: " << whichWay << "\n";
     // for each move direction
     // check if move direction is valid
     // is destination on grid?
@@ -143,7 +142,7 @@ void Doodlebug::move() {
 
 // DIE
 void Doodlebug::die(World p_world_obj) {
-    p_world_obj.clearCell(m_pos_x, m_pos_y);
+    worldObjectPtr->clearCell(m_pos_x, m_pos_y);
 }
 
 Doodlebug::~Doodlebug() {}
