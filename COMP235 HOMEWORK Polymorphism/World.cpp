@@ -64,7 +64,6 @@ void World::checkCellContents(int p_x, int p_y) {
     } else if (bugChar == 'A') {
         cout << "This cell contains an Ant!" << endl;
     }
-    
 }
 
 // set cell pointer
@@ -74,12 +73,13 @@ void World::setCellPointer(int p_x, int p_y, Organism &ptr, bool p_occupy) {
 }
 
 void World::clearCell(int p_x, int p_y) {
-    // cout << "Clear Cell with coords: " << p_x << "," << p_y << "\n";
-    tmpWorldBlockPtr = new WorldBlock();
+    cout << "Clear Cell with coords: " << p_x << "," << p_y << "\n";
+    
+    vWorldMatrix[p_x][p_y] = new WorldBlock();
     // point cell x, y to it
-    tmpWorldBlockPtr = vWorldMatrix[p_x][p_y];
-    tmpWorldBlockPtr->isOccupied = false;
-    tmpWorldBlockPtr->occupantPtr = nullptr;
+    vWorldMatrix[p_x][p_y]->pos_x = p_x;
+    vWorldMatrix[p_x][p_y]->pos_y = p_y;
+
 }
 
 void World::printWorldSize() {
@@ -93,7 +93,7 @@ void World::printWorldContents() {
     cout << "Printing the World * * * * * * * * *" << endl;
     for (int row = 0; row < vWorldMatrix.size(); row++) {
         for (int col = 0; col < vWorldMatrix[row].size(); col++) {
-            if (vWorldMatrix[row][col]->isOccupied) {
+            if (! (vWorldMatrix[row][col]->occupantPtr == nullptr) &&vWorldMatrix[row][col]->isOccupied) {
                 cout << "[" << vWorldMatrix[row][col]->occupantPtr->getSymbol() << "]";
             } else {
                 cout << "[ ]";
@@ -107,7 +107,7 @@ void World::countBugs() {
     CreatureCount current_count;
     for (int row = 0; row < vWorldMatrix.size(); row++) {
         for (int col = 0; col < vWorldMatrix[row].size(); col++) {
-            if (vWorldMatrix[row][col]->isOccupied) {
+            if (! (vWorldMatrix[row][col]->occupantPtr == nullptr) && vWorldMatrix[row][col]->isOccupied) {
                 char creature_symbol = vWorldMatrix[row][col]->occupantPtr->getSymbol();
                 if (creature_symbol == 'A') {
                     current_count.num_ants++;

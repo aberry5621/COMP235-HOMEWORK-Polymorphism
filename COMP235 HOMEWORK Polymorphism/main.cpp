@@ -40,7 +40,9 @@ int main() {
     // create world
     World SimBugWorld(WORLD_SIZE, WORLD_SIZE);
     
+    /*
     // inheritance test
+    
     Ant * tmpAnt;
     tmpAnt = new Ant(0, 0, &SimBugWorld);
     Ant * eensy = tmpAnt;
@@ -62,6 +64,9 @@ int main() {
     
     cout << endl;
     
+    int eensysInt = eensy->getStaticInt();
+    cout << "Eensy's int is: " << eensysInt;
+    cout << endl;
     
     cout << "Eensy moves: ";
     eensy->move();
@@ -72,6 +77,7 @@ int main() {
     
     
     cout << endl;
+     */
     
 
     
@@ -137,7 +143,8 @@ int main() {
                 vDoodlebugs[i]->increaseAge(SimBugWorld);
             }
         }
-
+        
+        cout << "Iteration number " << iterationCount << endl;
         SimBugWorld.printWorldSize();
         SimBugWorld.countBugs();
         SimBugWorld.printWorldContents();

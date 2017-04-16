@@ -152,6 +152,4 @@ void Doodlebug::move() {
     
 }
 // DIE
-Doodlebug::~Doodlebug() {
-    delete this;
-}
+Doodlebug::~Doodlebug() {}

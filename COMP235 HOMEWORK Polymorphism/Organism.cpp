@@ -40,7 +40,17 @@ void Organism::move() {
     
 }
 
+//int Organism::getStaticInt() {
+//
+//    return static_int;
+//
+//}
+//
+//void Organism::setStaticInt(int p_int) {
+//    
+//    static_int = p_int;
+//    
+//}
+
 // DIE
-Organism::~Organism() {
-    delete this;
-}
+Organism::~Organism() {}

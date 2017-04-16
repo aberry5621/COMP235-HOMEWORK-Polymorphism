@@ -28,9 +28,16 @@ public:
     void move();
     // breed
     // eat
+    
+    //static int getStaticInt();
+    
+    // static void setStaticInt(int p_int);
     // die
-    ~Organism();
+    virtual ~Organism();
 private:
+    // static int static_int;
+    // template <class T>
+    // static T * ptr;
     char character_symbol = '\0';
     int age = 0;
     int m_pos_x = 0;
