@@ -40,7 +40,6 @@ void Doodlebug::setPosition(int p_pos_x, int p_pos_y) {
 void Doodlebug::increaseAge(World p_world_obj) {
     this->age++;
     if (age > 3) {
-        cout << "Old DBUG, clear cell: " << endl;
         // too old, die
         die(p_world_obj);
     }

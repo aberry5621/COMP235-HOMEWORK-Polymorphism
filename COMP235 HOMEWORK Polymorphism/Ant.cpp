@@ -39,8 +39,7 @@ void Ant::setPosition(int p_pos_x, int p_pos_y) {
 
 void Ant::increaseAge(World p_world_obj) {
     this->age++;
-    if (age > 3) {
-        cout << "Old ANT, clear cell: " << endl;
+    if (age > 20) {
         // too old, die
         die(p_world_obj);
     }
