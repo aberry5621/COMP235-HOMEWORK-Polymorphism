@@ -47,7 +47,6 @@ bool World::cellIsOccupied(int p_x, int p_y) {
         }
     } else {
         cout << "ERROR: cellIsOccupied check outside grid bounds! ";
-        cout << "Dont trust bool tBool!\n";
     }
     return tBool;
 }

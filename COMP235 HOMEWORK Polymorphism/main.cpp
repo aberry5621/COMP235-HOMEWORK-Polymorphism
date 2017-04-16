@@ -41,7 +41,7 @@ int main() {
     World SimBugWorld(WORLD_SIZE, WORLD_SIZE);
     
     /*
-    // inheritance test
+    // inheritance testing
     
     Ant * tmpAnt;
     tmpAnt = new Ant(0, 0, &SimBugWorld);
@@ -180,16 +180,12 @@ void stepConfirmMessage() {
 }
 
 void readCoords(World p_world) {
-    cout << "Read Coords!" << endl;
-    cout << "Enter X value: ";
+    cout << "Read Cell Coords!" << endl;
     int x = 0;
-    cin >> x;
-    cout << "Enter Y value: ";
     int y = 0;
-    cin >> y;
-    
+    cout << "Enter X Y value: ";
+    cin >> x >> y;
     cout << "Reading cell " << x << "," << y << endl;
-    
     bool bOccupied = p_world.cellIsOccupied(x, y);
     if (bOccupied) {
         cout << "Cell is occupied!\n";
