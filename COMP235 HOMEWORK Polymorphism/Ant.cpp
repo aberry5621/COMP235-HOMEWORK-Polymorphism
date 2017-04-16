@@ -95,7 +95,6 @@ void Ant::move() {
                 cout << "Up space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(nextUp, cur_y);
                 cout << tBool << "\n";
-                
                 if (tBool == 0) {
                     cout << "UP cell is open, ANT CAN MOVE UP!\n";
                     cout << "Current ANT X: " << cur_x << "\n";
@@ -121,7 +120,6 @@ void Ant::move() {
                 cout << "Right space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(cur_x, nextRight);
                 cout << tBool << "\n";
-                cout << "\n";
                 if (tBool == 0) {
                     cout << "RIGHT cell is open, ANT CAN MOVE RIGHT!\n";
                     cout << "Current ANT X: " << cur_x << "\n";

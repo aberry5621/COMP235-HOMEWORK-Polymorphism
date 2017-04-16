@@ -84,7 +84,15 @@ void Doodlebug::move() {
                 cout << "Left space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(cur_x, nextLeft);
                 cout << tBool << "\n";
-                cout << "\n";
+                if (tBool == 0) {
+                    cout << "Left cell is open, ANT CAN MOVE LEFT!\n";
+                    cout << "Current ANT X: " << cur_x << "\n";
+                    cout << "Current ANT Y: " << cur_y << "\n";
+                    Doodlebug * tmpDoodlebug = this;
+                    this->worldObjectPtr->setCellPointer(cur_x, nextLeft, *tmpDoodlebug, 1);
+                    tmpDoodlebug->setPosition(cur_x, nextLeft);
+                    worldObjectPtr->clearCell(cur_x, cur_y);
+                }
             }
             break;
         case 2:
@@ -100,8 +108,16 @@ void Doodlebug::move() {
                 cout << "This bugs next up coords: " << nextUp << "," << cur_y << "\n";
                 cout << "Up space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(nextUp, cur_y);
-                cout << tBool;
-                cout << "\n";
+                cout << tBool << "\n";
+                if (tBool == 0) {
+                    cout << "UP cell is open, ANT CAN MOVE UP!\n";
+                    cout << "Current ANT X: " << cur_x << "\n";
+                    cout << "Current ANT Y: " << cur_y << "\n";
+                    Doodlebug * tmpDoodlebug = this;
+                    worldObjectPtr->setCellPointer(nextUp, cur_y, *tmpDoodlebug, 1);
+                    tmpDoodlebug->setPosition(nextUp, cur_y);
+                    worldObjectPtr->clearCell(cur_x, cur_y);
+                }
             }
             break;
         case 3:
@@ -117,8 +133,16 @@ void Doodlebug::move() {
                 cout << "This bugs next right coords: " << cur_x << "," << nextRight << "\n";
                 cout << "Right space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(cur_x, nextRight);
-                cout << tBool;
-                cout << "\n";
+                cout << tBool << "\n";
+                if (tBool == 0) {
+                    cout << "RIGHT cell is open, ANT CAN MOVE RIGHT!\n";
+                    cout << "Current ANT X: " << cur_x << "\n";
+                    cout << "Current ANT Y: " << cur_y << "\n";
+                    Doodlebug * tmpDoodlebug = this;
+                    worldObjectPtr->setCellPointer(cur_x, nextRight, *tmpDoodlebug, 1);
+                    tmpDoodlebug->setPosition(cur_x, nextRight);
+                    worldObjectPtr->clearCell(cur_x, cur_y);
+                }
             }
             break;
         case 4:
@@ -134,8 +158,16 @@ void Doodlebug::move() {
                 cout << "This bugs next lower coords: " << nextLower << "," << cur_y << "\n";
                 cout << "Lower space is occupied bool check = ";
                 bool tBool = worldObjectPtr->cellIsOccupied(nextLower, cur_y);
-                cout << tBool;
-                cout << "\n";
+                cout << tBool << "\n";
+                if (tBool == 0) {
+                    cout << "DOWN cell is open, ANT CAN MOVE DOWN!\n";
+                    cout << "Current ANT X: " << cur_x << "\n";
+                    cout << "Current ANT Y: " << cur_y << "\n";
+                    Doodlebug * tmpDoodlebug = this;
+                    worldObjectPtr->setCellPointer(nextLower, cur_y, *tmpDoodlebug, 1);
+                    tmpDoodlebug->setPosition(nextLower, cur_y);
+                    worldObjectPtr->clearCell(cur_x, cur_y);
+                }
             }
             break;
         default:
