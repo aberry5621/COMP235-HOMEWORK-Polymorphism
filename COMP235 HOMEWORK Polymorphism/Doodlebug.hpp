@@ -21,8 +21,7 @@ public:
     void setPosition(int p_pos_x, int p_pos_y);
     void increaseAge(World p_world_obj);
     void starve(World p_world_obj);
-    void moveCheck();
-    void move(int x, int y, int next_coord, int dir, Doodlebug * ptr, bool setOccupy);
+    void move();
     void die(World p_world_obj);
     ~Doodlebug();
 private:

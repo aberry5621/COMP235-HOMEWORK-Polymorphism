@@ -129,7 +129,7 @@ int main() {
             // move doodlebugs
             for (int i = 0; i < vDoodlebugs.size(); i++) {
                 // cout << "Moving Doodlebug Number: " << i+1 << endl;
-                vDoodlebugs[i]->moveCheck();
+                vDoodlebugs[i]->move();
             }
             
             // move ants

@@ -53,7 +53,7 @@ void Doodlebug::starve(World p_world_obj) {
     }
 }
 
-void Doodlebug::moveCheck() {
+void Doodlebug::move() {
     /* randomly move left right up down */
     // get current position x, y coords on grid
     int cur_x = m_pos_x; // this doodlebug's x pos
@@ -68,7 +68,6 @@ void Doodlebug::moveCheck() {
     // check if move direction is valid
     // is destination on grid?
     // is destination free? (not occupied)
-    Doodlebug * tmpDbug = this;
     switch (whichWay) {
         case 1:
             // left
@@ -86,7 +85,10 @@ void Doodlebug::moveCheck() {
                     if (bugTypeChar == 'A') {
                         // MOVE
                         cout << "Doodlebug found an ant at: " << cur_x << "," << nextLeft << " ";
-                        move(cur_x, cur_y, nextLeft, whichWay, tmpDbug, 1);
+                        Doodlebug * tmpDbug = this;
+                        this->worldObjectPtr->setCellPointer(cur_x, nextLeft, *tmpDbug, 1);
+                        tmpDbug->setPosition(cur_x, nextLeft);
+                        worldObjectPtr->clearCell(cur_x, cur_y);
                         // ATE ANT
                         this->ticks_since_eaten = 3;
                     cout << "and ate it. \n";
@@ -96,7 +98,11 @@ void Doodlebug::moveCheck() {
                     
                 } else {
                     // MOVE
-                    move(cur_x, cur_y, nextLeft, whichWay, tmpDbug, 1);
+                    Doodlebug * tmpDbug = this;
+                    this->worldObjectPtr->setCellPointer(cur_x, nextLeft, *tmpDbug, 1);
+                    tmpDbug->setPosition(cur_x, nextLeft);
+                    worldObjectPtr->clearCell(cur_x, cur_y);
+
                 }
             }
             break;
@@ -114,7 +120,7 @@ void Doodlebug::moveCheck() {
                     cout << "Doodlebug found an ant at: " << nextUp << "," << cur_y << "\n";
                 } else {
                     // MOVE
-
+                    Doodlebug * tmpDbug = this;
                     worldObjectPtr->setCellPointer(nextUp, cur_y, *tmpDbug, 1);
                     tmpDbug->setPosition(nextUp, cur_y);
                     worldObjectPtr->clearCell(cur_x, cur_y);
@@ -137,7 +143,7 @@ void Doodlebug::moveCheck() {
 
                 } else {
                     // MOVE
-
+                    Doodlebug * tmpDbug = this;
                     worldObjectPtr->setCellPointer(cur_x, nextRight, *tmpDbug, 1);
                     tmpDbug->setPosition(cur_x, nextRight);
                     worldObjectPtr->clearCell(cur_x, cur_y);
@@ -159,49 +165,12 @@ void Doodlebug::moveCheck() {
                     cout << "Doodlebug found an ant at: " << nextLower << "," << cur_y << "\n";
                 } else {
                     // MOVE
-
+                    Doodlebug * tmpDbug = this;
                     worldObjectPtr->setCellPointer(nextLower, cur_y, *tmpDbug, 1);
                     tmpDbug->setPosition(nextLower, cur_y);
                     worldObjectPtr->clearCell(cur_x, cur_y);
                 }
             }
-            break;
-        default:
-            break;
-    }
-
-}
-
-void Doodlebug::move(int x, int y, int next_coord, int dir, Doodlebug * ptr, bool setOccupy) {
-    
-    switch (dir) {
-        case 1:
-            // left
-            worldObjectPtr->setCellPointer(x, next_coord, *ptr, setOccupy);
-            ptr->setPosition(x, next_coord);
-            // always clear the current x y after moving
-            worldObjectPtr->clearCell(x, y);
-            break;
-        case 2:
-            // up
-            worldObjectPtr->setCellPointer(next_coord, y, *ptr, setOccupy);
-            ptr->setPosition(next_coord, y);
-            // always clear the current x y after moving
-            worldObjectPtr->clearCell(x, y);
-            break;
-        case 3:
-            // right
-            worldObjectPtr->setCellPointer(x, next_coord, *ptr, setOccupy);
-            ptr->setPosition(x, next_coord);
-            // always clear the current x y after moving
-            worldObjectPtr->clearCell(x, y);
-            break;
-        case 4:
-            // down
-            worldObjectPtr->setCellPointer(next_coord, y, *ptr, setOccupy);
-            ptr->setPosition(next_coord, y);
-            // always clear the current x y after moving
-            worldObjectPtr->clearCell(x, y);
             break;
         default:
             break;
