@@ -51,15 +51,23 @@ bool World::cellIsOccupied(int p_x, int p_y) {
     return tBool;
 }
 
-void World::checkCellContents(int p_x, int p_y) {
-    WorldBlock * tmpPtr;
-    tmpPtr = vWorldMatrix[p_x][p_y];
-    char bugChar = tmpPtr->occupantPtr->getSymbol();
-    if (bugChar == 'D') {
-        cout << "This cell contains a Doodlebug!" << endl;
-    } else if (bugChar == 'A') {
-        cout << "This cell contains an Ant!" << endl;
+char World::checkCellContents(int p_x, int p_y) {
+    char bugChar = '\0';
+    if ((p_x >= 0 && p_x < m_size_x) && (p_y >= 0 && p_y < m_size_y)) {
+        WorldBlock * tmpPtr;
+        tmpPtr = vWorldMatrix[p_x][p_y];
+        bugChar = tmpPtr->occupantPtr->getSymbol();
+        if (bugChar == 'D') {
+            cout << "This cell contains a Doodlebug!" << endl;
+        } else if (bugChar == 'A') {
+            cout << "This cell contains an Ant!" << endl;
+        }
+        return bugChar;
+    } else {
+        cout << "ERROR: checkCellContents outside grid bounds! \n";
+        cout << "Do not trust bugChar ";
     }
+    return bugChar;
 }
 
 // set cell pointer

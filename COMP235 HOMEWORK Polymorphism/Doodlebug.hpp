@@ -20,12 +20,14 @@ public:
     void setSymbol(char p_sym);
     void setPosition(int p_pos_x, int p_pos_y);
     void increaseAge(World p_world_obj);
+    void starve(World p_world_obj);
     void move();
     void die(World p_world_obj);
     ~Doodlebug();
 private:
     World * worldObjectPtr;
     char character_symbol = 'D';
+    int ticks_since_eaten = 3;
     int age = 0;
     int m_pos_x = 0;
     int m_pos_y = 0;

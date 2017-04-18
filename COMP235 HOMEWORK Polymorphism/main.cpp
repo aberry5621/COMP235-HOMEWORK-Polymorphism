@@ -179,6 +179,7 @@ void stepConfirmMessage() {
     cout << "Stepping forward in time!" << endl;
 }
 
+
 void readCoords(World p_world) {
     cout << "Read Cell Coords!" << endl;
     int x = 0;

@@ -39,8 +39,16 @@ void Doodlebug::setPosition(int p_pos_x, int p_pos_y) {
 
 void Doodlebug::increaseAge(World p_world_obj) {
     this->age++;
-    if (age > 3) {
+    if (age > 25) {
         // too old, die
+        die(p_world_obj);
+    }
+}
+
+void Doodlebug::starve(World p_world_obj) {
+    this->ticks_since_eaten--;
+    if (ticks_since_eaten == 0) {
+        // starved, die
         die(p_world_obj);
     }
 }
@@ -72,11 +80,29 @@ void Doodlebug::move() {
                 // check next left space
                 int nextLeft = cur_y - 1;
                 bool tBool = worldObjectPtr->cellIsOccupied(cur_x, nextLeft);
-                if (tBool == 0) {
+                if (tBool == 1) {
+                char bugTypeChar = worldObjectPtr->checkCellContents(cur_x, nextLeft);
+                    if (bugTypeChar == 'A') {
+                        // MOVE
+                        cout << "Doodlebug found an ant at: " << cur_x << "," << nextLeft << " ";
+                        Doodlebug * tmpDbug = this;
+                        this->worldObjectPtr->setCellPointer(cur_x, nextLeft, *tmpDbug, 1);
+                        tmpDbug->setPosition(cur_x, nextLeft);
+                        worldObjectPtr->clearCell(cur_x, cur_y);
+                        // ATE ANT
+                        this->ticks_since_eaten = 3;
+                    cout << "and ate it. \n";
+                    } else if (bugTypeChar == 'D') {
+                        break;
+                    }
+                    
+                } else {
+                    // MOVE
                     Doodlebug * tmpDbug = this;
                     this->worldObjectPtr->setCellPointer(cur_x, nextLeft, *tmpDbug, 1);
                     tmpDbug->setPosition(cur_x, nextLeft);
                     worldObjectPtr->clearCell(cur_x, cur_y);
+
                 }
             }
             break;
@@ -89,7 +115,11 @@ void Doodlebug::move() {
                 // check next left space
                 int nextUp = cur_x - 1;
                 bool tBool = worldObjectPtr->cellIsOccupied(nextUp, cur_y);
-                if (tBool == 0) {
+                if (tBool == 1) {
+                    // EAT ANT
+                    cout << "Doodlebug found an ant at: " << nextUp << "," << cur_y << "\n";
+                } else {
+                    // MOVE
                     Doodlebug * tmpDbug = this;
                     worldObjectPtr->setCellPointer(nextUp, cur_y, *tmpDbug, 1);
                     tmpDbug->setPosition(nextUp, cur_y);
@@ -107,7 +137,12 @@ void Doodlebug::move() {
                 // check next right space
                 int nextRight = cur_y + 1;
                 bool tBool = worldObjectPtr->cellIsOccupied(cur_x, nextRight);
-                if (tBool == 0) {
+                if (tBool == 1) {
+                    // EAT ANT
+                    cout << "Doodlebug found an ant at: " << cur_x << "," << nextRight << "\n";
+
+                } else {
+                    // MOVE
                     Doodlebug * tmpDbug = this;
                     worldObjectPtr->setCellPointer(cur_x, nextRight, *tmpDbug, 1);
                     tmpDbug->setPosition(cur_x, nextRight);
@@ -125,7 +160,11 @@ void Doodlebug::move() {
                 // check next lower space
                 int nextLower = cur_x + 1;
                 bool tBool = worldObjectPtr->cellIsOccupied(nextLower, cur_y);
-                if (tBool == 0) {
+                if (tBool == 1) {
+                    // EAT ANT
+                    cout << "Doodlebug found an ant at: " << nextLower << "," << cur_y << "\n";
+                } else {
+                    // MOVE
                     Doodlebug * tmpDbug = this;
                     worldObjectPtr->setCellPointer(nextLower, cur_y, *tmpDbug, 1);
                     tmpDbug->setPosition(nextLower, cur_y);

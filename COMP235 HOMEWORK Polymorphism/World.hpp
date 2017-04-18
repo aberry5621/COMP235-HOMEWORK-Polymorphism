@@ -35,7 +35,7 @@ public:
     bool cellIsOccupied(int p_x, int p_y);
     
     // check what is in the cell
-    void checkCellContents(int p_x, int p_y);
+    char checkCellContents(int p_x, int p_y);
     
     // add something to a cell
     
