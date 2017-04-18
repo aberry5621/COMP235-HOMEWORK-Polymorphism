@@ -94,7 +94,29 @@ void World::printWorldContents() {
     // print the grid
     cout << "Printing the World * * * * * * * * *" << endl;
     for (int row = 0; row < vWorldMatrix.size(); row++) {
+        if (row == 0) {
+            for (int col = 0; col < vWorldMatrix[row].size()+1; col++) {
+                if (col == 0) {
+                    cout << "   ";
+                } else {
+                    if (col < 11) {
+                        cout << "0" << col-1 << " ";
+                    } else {
+                        cout << col-1 << " ";
+                    }
+                    
+                }
+            }
+            cout << "\n";
+        }
         for (int col = 0; col < vWorldMatrix[row].size(); col++) {
+            if (col == 0) {
+                if (row < 10) {
+                    cout << "0" << row << " ";
+                } else {
+                    cout << row << " ";
+                }
+            }
             if (! (vWorldMatrix[row][col]->occupantPtr == nullptr) &&vWorldMatrix[row][col]->isOccupied) {
                 cout << "[" << vWorldMatrix[row][col]->occupantPtr->getSymbol() << "]";
             } else {

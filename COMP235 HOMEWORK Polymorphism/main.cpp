@@ -179,7 +179,6 @@ void stepConfirmMessage() {
     cout << "Stepping forward in time!" << endl;
 }
 
-
 void readCoords(World p_world) {
     cout << "Read Cell Coords!" << endl;
     int x = 0;
@@ -194,7 +193,6 @@ void readCoords(World p_world) {
     } else {
         cout << "Cell is NOT occupied!\n";
     }
-    
 }
 
 void quitSimulation() {
