@@ -27,7 +27,7 @@ public:
 private:
     World * worldObjectPtr;
     char character_symbol = 'D';
-    int ticks_since_eaten = 3;
+    int ticks_since_eaten = 30;
     int age = 0;
     int m_pos_x = 0;
     int m_pos_y = 0;

@@ -34,53 +34,43 @@ int main() {
     srand(static_cast<int>(time(0)));
     // INITIALIZE WORLD
     const int WORLD_SIZE = 20;
-    const int QTY_ANTS = 100;
-    const int QTY_DOODLEBUGS = 5;
+    const int QTY_ANTS = 1;
+    const int QTY_DOODLEBUGS = 1;
 
     // create world
     World SimBugWorld(WORLD_SIZE, WORLD_SIZE);
     
-    /*
     // inheritance testing
-    
-    Ant * tmpAnt;
-    tmpAnt = new Ant(0, 0, &SimBugWorld);
-    Ant * eensy = tmpAnt;
-    
-    Doodlebug * tmpDbug;
-    tmpDbug = new Doodlebug(0, 0, &SimBugWorld);
-    Doodlebug * weensy = tmpDbug;
-    
-    char symbol = '\0';
-    cout << "Eensy says: ";
-    eensy->shoutOut();
-    symbol = eensy->getSymbol();
-    cout << "Eensy says my direct symbol is " << symbol;
-    cout << endl;
-    cout << "Teensy says: ";
-    weensy->shoutOut();
-    symbol = weensy->getSymbol();
-    cout << "Weensy says my direct symbol is " << symbol;
-    
-    cout << endl;
-    
-    int eensysInt = eensy->getStaticInt();
-    cout << "Eensy's int is: " << eensysInt;
-    cout << endl;
-    
-    cout << "Eensy moves: ";
-    eensy->move();
-    cout << endl;
-    
-    cout << "Teensy moves: ";
-    weensy->move();
-    
-    
-    cout << endl;
-     */
-    
+//    Ant * tmpAnt;
+//    tmpAnt = new Ant(0, 0, &SimBugWorld);
+//    Ant * eensy = tmpAnt;
+//    
+//    Doodlebug * tmpDbug;
+//    tmpDbug = new Doodlebug(0, 0, &SimBugWorld);
+//    Doodlebug * weensy = tmpDbug;
+//    
+//    char symbol = '\0';
+//    cout << "Eensy says: ";
+//    eensy->shoutOut();
+//    symbol = eensy->getSymbol();
+//    cout << "Eensy says my direct symbol is " << symbol;
+//    cout << endl;
+//    cout << "Teensy says: ";
+//    weensy->shoutOut();
+//    symbol = weensy->getSymbol();
+//    cout << "Weensy says my direct symbol is " << symbol;
+//    
+//    cout << endl;
+//    
+//    cout << "Eensy moves: ";
+//    eensy->move();
+//    cout << endl;
+//    
+//    cout << "Teensy moves: ";
+//    weensy->move();
+//
+//    cout << endl;
 
-    
     // populate initial bugs
     
     // Vector of Ants
@@ -88,8 +78,8 @@ int main() {
     // 5 ants
     int antsSpawned = 0;
     while (antsSpawned < QTY_ANTS) {
-        int r_x = get_rand(0,19);
-        int r_y = get_rand(0,19);
+        int r_x = get_rand(0,WORLD_SIZE-1);
+        int r_y = get_rand(0,WORLD_SIZE-1);
         if ( ! (SimBugWorld.cellIsOccupied(r_x, r_y))) {
             Ant * tmpAntPtr;
             tmpAntPtr = new Ant(r_x, r_y, &SimBugWorld);
@@ -106,8 +96,8 @@ int main() {
     // 100 doodlebugs
     int dbugsSpawned = 0;
     while (dbugsSpawned < QTY_DOODLEBUGS) {
-        int r_x = get_rand(0,19);
-        int r_y = get_rand(0,19);
+        int r_x = get_rand(0,WORLD_SIZE-1);
+        int r_y = get_rand(0,WORLD_SIZE-1);
         if ( ! (SimBugWorld.cellIsOccupied(r_x, r_y))) {
             Doodlebug * tmpDbugPtr;
             tmpDbugPtr = new Doodlebug(r_x, r_y, &SimBugWorld);
